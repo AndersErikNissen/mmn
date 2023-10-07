@@ -1,0 +1,77 @@
+:root {
+  --color-1: 0, 0, 0;
+  --color-2: 0, 0, 0;
+  --color-3: 0, 0, 0;
+  --color-font: 5, 5, 5;
+  --color-font-secondary: var(--color-font), 0.5;
+  
+  --space-floor: 10px;
+  --space-section: calc(var(--space-floor) * 5);
+  --space-gutter: calc(var(--space-floor) * 2);
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --space-floor: 20px;
+  }
+}
+
+
+/* -------- */
+/* Sitewide */
+/* -------- */
+html {
+  font-size: 100%;
+  color: rgb(var(--color-font));
+}
+
+.heading {
+  font-size: 3rem;
+}
+
+.subheading {
+  font-size: 2rem;
+  color: rgba(var(--color-font-secondary));
+}
+
+.subheading, .heading {
+  margin-bottom: 0.5em;
+}
+
+.frame {
+  position: relative;
+}
+
+.frame::before {
+  content: "";
+  padding-bottom: var(--frame-aspect, 100%);
+  display: block;
+}
+
+.frame img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section {
+  
+}
+
+.pw {
+
+}
+
+/*
+
+Media
+
+Responsive
+- query
+- pw
+Layout
+
+*/
