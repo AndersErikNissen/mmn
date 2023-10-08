@@ -183,12 +183,12 @@ html {
 }
 
 #Content, #Menu {
-  top: 0;
-  right: 0;
   max-width: 100%;
 }
 
 #Menu {
+  top: 0;
+  right: 0;
   position: fixed;
   transform: translateX(100%);
   min-height: 100vh;
@@ -225,6 +225,12 @@ html {
 /* ------------- */
 /* INTRO SECTION */
 /* ------------- */
+#Content {
+  content: "";
+  display: block;
+  padding-top: 100vh;
+  width: 100%;
+}
 .introSection {
   position: fixed;
   top: 0;
@@ -232,6 +238,6 @@ html {
   width: 100%;
 }
 
-.belowFixedIntro {
-  margin-top: 100vh;
+.introSection ~ * {
+  background-color: white;
 }
