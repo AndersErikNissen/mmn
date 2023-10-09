@@ -5,6 +5,7 @@
   const root = document.documentElement;
   const pairs = [
     { name: '--move-content', value: '-' + document.querySelector('#Menu').getBoundingClientRect().width + 'px' },
+    { name: '--navigation-height', value: document.querySelector('#Navigation').getBoundingClientRect().height + 'px' },
   ]
   
   pairs.forEach(pair => root.style.setProperty(pair.name, pair.value));
@@ -18,27 +19,21 @@ const classListMatch = (element, classList) => classList.some(clss => element.cl
 
 // Menu handler
 (function() {
-  const activators = ['openMenu'];
-  const deactivators = ['closeMenu'];
+  const menu = document.querySelector('#Menu');
+  const menuButton = document.querySelector('#MenuButton');
   
   document.body.addEventListener('click', function(event) {
     toggleTransitions();
     const inactiveMenu = !document.body.classList.contains('activeMenu');
-
-    switch(true) {
-      case classListMatch(event.target, deactivators):
-        if (!inactiveMenu) document.body.classList.remove('activeMenu');
-
-      case !!event.target.closest('#Menu'):
-      case event.target.id == 'Menu':
-        break;
-
-      case classListMatch(event.target, activators):
-        if (inactiveMenu) document.body.classList.add('activeMenu')
-        break;
-
-      default: 
-        if (!inactiveMenu) document.body.classList.remove('activeMenu');
+    if (event.target === menuButton) {
+      if (inactiveMenu) {
+        menu.style.transform = 'translateY(' + window.scrollY + 'px)';
+        document.body.classList.add('activeMenu');
+      } else {
+        document.body.classList.remove('activeMenu');
+      }
+    } else {
+      if (!!event.target.closest('#Menu') == false && !inactiveMenu) document.body.classList.remove('activeMenu');
     }
   });
 })();

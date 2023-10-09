@@ -75,22 +75,18 @@ html {
 /* ---------- */
 /* ANIMATIONS */
 /* ---------- */
-.activeTransitions #Menu, .activeTransitions #Content {
+.activeTransitions #Slider {
   transition: transform var(--timing-long) ease;
 }
 
-.activeMenu #Menu {
-  transform: translateX(0);
-}
-
-.activeMenu #Content {
+.activeMenu #Slider {
   transform: translateX(var(--move-content));
 }
 
 /* ------- */
 /* SECTION */
 /* ------- */
-.section, .fullSection, .fullSection > * {
+.section, .fullSection, .fullSection > [class*="Block"] {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -103,83 +99,82 @@ html {
   min-height: 100vh;
 }
 
-.fullSection > div {
-  padding-right: var(--space-gutter);
-  padding-left: var(--space-gutter);
+.fullSection > .oddBlock, .fullSection > .evenBlock {
+  padding: var(--space-section) var(--space-gutter);
 }
 
-.fullSection > div:nth-child(odd) {
-  padding-top: var(--space-section);
-  padding-bottom: var(--space-section);
-}
-
-.fullSection > div:nth-child(even) {
-  padding-top: var(--space-section);
-  padding-bottom: var(--space-section);
-}
-
-.section > div, .fullSection > div {
+.section > [class*="Block"], .fullSection > [class*="Block"] {
   position: relative;
   flex: 1 0 100%;
 }
 
-.section > div, .fullSection > div > div {
-  padding: var(--space-block);
+.section > .singleBlock, .fullSection > .singleBlock {
+  flex: 1 1 100%;
   width: 100%;
+  max-width: var(--page-width);
 }
 
 @media screen and (max-width: 1023px) {
-  .section > div:not(:last-child):nth-child(odd) {
+  .section > .oddBlock {
     margin-bottom: var(--space-gutter)
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .section > div:not(:only-child), .fullSection > div:not(:only-child) > div {
-    max-width: calc(var(--page-width) / 2);
+  .section > .oddBlock, .section > .evenBlock, 
+  .fullSection > .oddBlock > *, .fullSection > .evenBlock > * {
+    max-width: calc((var(--page-width) / 2) - (var(--space-gutter) * 2));
   }
   
-  .fullSection > div {
+  .fullSection > .oddBlock, .fullSection > .evenBlock {
     flex: 1 1 50%;
   }
   
-  .section > div {
+  .section > .oddBlock {
     flex: 1 1 calc(50% - var(--space-gutter));
+    margin-right: var(--space-gutter);
   }
 
-  .fullSection > div > div {
-    flex: 1 1 calc(100% - var(--space-gutter));
+  .section > .evenBlock {
+    flex: 1 1 calc(50% - var(--space-gutter));
+    margin-left: var(--space-gutter);
   }
 
-  .fullSection > div:not(:first-of-type:last-of-type):nth-child(odd) > div, .section > div:not(:first-of-type:last-of-type):nth-child(odd) {
+  .fullSection > .oddBlock > * {
+    flex: 0 1 calc(100% - var(--space-gutter));
     margin-right: var(--space-gutter); 
+    justify-content: end;
+
   }
 
-  .fullSection > div:not(:first-of-type:last-of-type):nth-child(even) > div, .section > div:not(:first-of-type:last-of-type):nth-child(even) {
+  .fullSection > .evenBlock > * {
+    flex: 0 1 calc(100% - var(--space-gutter));
     margin-left: var(--space-gutter); 
-  }
-  
-  .fullSection > div:nth-child(odd) {
-    justify-content: end;
-    padding-right: 0;
-  }
-  
-  .fullSection > div:nth-child(even) {
     justify-content: start;
-    padding-left: 0;
   }
 }
 
 /* ---- */
 /* MENU */
 /* ---- */
-#Shell {
+.activeMenu {
   overflow: hidden;
+}
+
+#Shell {
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#Slider {
+  width: 100%;
+  display: flex;
 }
 
 #Content {
   width: 100%;
+  flex: 0 0 100%;
 }
 
 #Content, #Menu {
@@ -187,12 +182,10 @@ html {
 }
 
 #Menu {
-  top: 0;
-  right: 0;
-  position: fixed;
-  transform: translateX(100%);
-  min-height: 100vh;
+  flex: 0 0 auto;
+  color: rgba(var(--color-font-secondary));
   background-color: rgba(var(--color2), 1);
+  padding-top: var(--navigation-height, 0px);
 }
 
 @media screen and (max-width: 1023px) {
@@ -218,7 +211,7 @@ html {
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  max-width: calc(var(--page-width) + (var(--space-gutter) * 2));
+  max-width: var(--page-width);
   padding: var(--space-block) var(--space-gutter);
 }
 
@@ -226,13 +219,13 @@ html {
 /* INTRO SECTION */
 /* ------------- */
 #Content {
-  content: "";
   display: block;
   padding-top: 100vh;
   width: 100%;
 }
+
 .introSection {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -241,3 +234,13 @@ html {
 .introSection ~ * {
   background-color: white;
 }
+
+
+/*
+ To do:
+  -animate on scroll down
+  -change background color
+  -create animate hamburger
+  -start to style 
+  -setup content
+*/
