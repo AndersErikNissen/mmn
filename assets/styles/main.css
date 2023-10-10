@@ -3,7 +3,9 @@
   --color2: 100, 100, 100;
   --color3: 0, 0, 0;
   --color-font: 5, 5, 5;
-  --color-font-secondary: var(--color-font), 0.5;
+  --color-font-secondary: 255, 255, 255, 1;
+  --color-background: 244, 244, 237, 1;
+  --color-foreground: 177, 74, 237, 1;
   
   --page-width: 1440px;
   --space-floor: 10px;
@@ -33,11 +35,27 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  background-color: rgba(var(--color-background));
+}
+
 .heading {
   font-size: 3rem;
   color: rgba(var(--color-font), 1);
   font-family: 'Poltawski Nowy', serif;
   font-weight: 700;
+  display: block;
+  overflow: hidden;
+}
+
+.heading > span {
+  display: block;
+  transform: translateY(101%);
+}
+
+.heading.animateHeading > span {
+  transition: transform var(--timing-short) ease-in;
+  transform: translateY(0);
 }
 
 .subheading {
@@ -97,6 +115,7 @@ html {
 .section {
   padding: var(--space-section) var(--space-gutter);
   min-height: 100vh;
+  background-color: rgba(var(--color-background));
 }
 
 .fullSection > .oddBlock, .fullSection > .evenBlock {
@@ -155,7 +174,7 @@ html {
 }
 
 /* ---- */
-/* MENU */
+/* SITE CONTENT */
 /* ---- */
 .activeMenu {
   overflow: hidden;
@@ -181,11 +200,44 @@ html {
   max-width: 100%;
 }
 
+/* ---- */
+/* MENU */
+/* ---- */
 #Menu {
   flex: 0 0 auto;
   color: rgba(var(--color-font-secondary));
-  background-color: rgba(var(--color2), 1);
-  padding-top: var(--navigation-height, 0px);
+  background-color: rgba(var(--color-foreground));
+  margin-top: var(--navigation-height, 0px);
+  height: calc(100vh - var(--navigation-height));
+  padding: var(--space-section) var(--space-gutter);
+}
+
+#Menu li {
+  font-size: 5rem;
+  width: 100%;
+  line-height: 1;
+  overflow: hidden;
+}
+
+#Menu li:not(:last-child) {
+  margin-bottom: var(--space-gutter);
+}
+
+#Menu a {
+  color: rgba(var(--color-font-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+#Menu span {
+  padding-right: calc(var(--space-gutter) + 0.75em);
+}
+
+#Menu svg {
+  width: 0.75em;
+  height: auto;
 }
 
 @media screen and (max-width: 1023px) {
@@ -194,18 +246,53 @@ html {
   }
 }
 
+@media screen and (min-width: 1024px) {
+  #Menu a {
+    transform: translateY(-101%);
+  }
+  
+  .activeMenu #Menu a {
+    transform: translateY(0);
+  }
+  
+  .activeMenu #Menu li:nth-child(1) a {
+    transition: transform 400ms ease-in 100ms;
+  }
+  
+  .activeMenu #Menu li:nth-child(2) a {
+    transition: transform 300ms ease-in 200ms;
+  }
+
+  .activeMenu #Menu li:nth-child(3) a {
+    transition: transform 200ms ease-in 300ms;
+  }
+
+  #Menu svg {
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity var(--timing-short) ease-in, transform var(--timing-short) ease-in;
+  }
+  
+  #Menu li:hover svg {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* -------------- */
 /* TOP NAVIGATION */
 /* -------------- */
 #Navigation {
+  color: rgba(var(--color-font), 1);
   z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  background-color: rgba(var(--color-background));
 }
 
-#Navigation > div {
+#Navigation > .navigationContent {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -215,32 +302,50 @@ html {
   padding: var(--space-block) var(--space-gutter);
 }
 
-/* ------------- */
-/* INTRO SECTION */
-/* ------------- */
-#Content {
+#Logo {
+  color: inherit;
+  width: 50px;
   display: block;
-  padding-top: 100vh;
-  width: 100%;
 }
 
-.introSection {
+#Logo svg {
+  width: 100%;
+  height: auto;
+}
+
+#MenuButton {
+  font-weight: 700;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.menuButtonContent {
+  pointer-events: none;
+  position: relative;
+  transition: transform var(--timing-long) ease-in;
+}
+
+.activeMenu .menuButtonContent {
+  transform: translateY(100%);
+}
+
+.menuButtonFirstStage, .menuButtonSecondStage {
+  display: block;
+  text-align: center;
+}
+
+.menuButtonSecondStage {
+  transform: translateY(-100%);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
 
-.introSection ~ * {
-  background-color: white;
-}
-
-
 /*
  To do:
-  -animate on scroll down
   -change background color
-  -create animate hamburger
+  -(on hold) create animate hamburger
   -start to style 
   -setup content
 */
