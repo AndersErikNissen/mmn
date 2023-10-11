@@ -30,19 +30,26 @@
 /* UTILITY */
 /* ------- */
 html {
-  font-size: 100%;
+  font-size: 16px;
   color: rgba(var(--color-font), 1);
   font-family: 'Poppins', sans-serif;
 }
 
+@media screen and (max-width: 1023px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 body {
   background-color: rgba(var(--color-background));
+  position: relative;
 }
 
 .heading {
-  font-size: 3rem;
+  font-size: 4rem;
   color: rgba(var(--color-font), 1);
-  font-family: 'Poltawski Nowy', serif;
+  font-family: 'Abril Fatface', serif;
   font-weight: 700;
   display: block;
   overflow: hidden;
@@ -51,10 +58,12 @@ body {
 .heading > span {
   display: block;
   transform: translateY(101%);
+  opacity: 0;
 }
 
-.heading.animateHeading > span {
-  transition: transform var(--timing-short) ease-in;
+.heading.animateMe > span {
+  transition: transform var(--timing-short) ease-in, opacity var(--timing-long) ease-in;
+  opacity: 1;
   transform: translateY(0);
 }
 
@@ -73,6 +82,7 @@ body {
 
 .frame {
   position: relative;
+  width: 100%;
 }
 
 .frame::before {
@@ -94,7 +104,7 @@ body {
 /* ANIMATIONS */
 /* ---------- */
 .activeTransitions #Slider {
-  transition: transform var(--timing-long) ease;
+  transition: transform var(--timing-long) ease-in-out;
 }
 
 .activeMenu #Slider {
@@ -210,10 +220,13 @@ body {
   margin-top: var(--navigation-height, 0px);
   height: calc(100vh - var(--navigation-height));
   padding: var(--space-section) var(--space-gutter);
+  position: relative;
+  z-index: 50;
 }
 
 #Menu li {
   font-size: 5rem;
+  font-family: 'Abril Fatface', serif;
   width: 100%;
   line-height: 1;
   overflow: hidden;
@@ -284,12 +297,11 @@ body {
 /* -------------- */
 #Navigation {
   color: rgba(var(--color-font), 1);
-  z-index: 10;
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(var(--color-background));
 }
 
 #Navigation > .navigationContent {
@@ -300,6 +312,25 @@ body {
   margin: 0 auto;
   max-width: var(--page-width);
   padding: var(--space-block) var(--space-gutter);
+}
+
+#NavigationBackground {
+  position: absolute;
+  pointer-events: none;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 100vh);
+}
+
+#NavigationBackground::before {
+  content: "";
+  display: block;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--navigation-height);
+  background-color: rgba(var(--color-background));
 }
 
 #Logo {
@@ -315,6 +346,7 @@ body {
 
 #MenuButton {
   font-weight: 700;
+  font-family: 'Abril Fatface', serif;
   overflow: hidden;
   cursor: pointer;
 }
@@ -344,8 +376,9 @@ body {
 
 /*
  To do:
-  -change background color
+  -(on hold) change background color
   -(on hold) create animate hamburger
+  - btns
   -start to style 
   -setup content
 */

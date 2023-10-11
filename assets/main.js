@@ -44,8 +44,8 @@ const classListMatch = (element, classList) => classList.some(clss => element.cl
   const observerCallback = (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        if (!entry.target.classList.contains('animateHeading')) {
-          entry.target.classList.add('animateHeading');
+        if (!entry.target.classList.contains('animateMe')) {
+          entry.target.classList.add('animateMe');
         }
       }
     });
