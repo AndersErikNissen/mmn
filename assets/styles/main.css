@@ -6,13 +6,15 @@
   --color-font-secondary: 255, 255, 255, 1;
   --color-background: 244, 244, 237, 1;
   --color-foreground: 177, 74, 237, 1;
+  --color-button: var(--color-font);
+  --color-button-secondary: var(--color-font-secondary);
   
   --page-width: 1440px;
   --space-floor: 10px;
   --space-section: calc(var(--space-floor) * 5);
   --space-block: calc(var(--space-floor) * 1);
   --space-gutter: calc(var(--space-floor) * 2);
-  --space1: calc(var(--space-floor) * 4);
+  --space1: calc(var(--space-floor) * 3);
   --space2: calc(var(--space-floor) * 2);
   --space3: calc(var(--space-floor) * 1);
 
@@ -52,17 +54,16 @@ body {
   font-family: 'Abril Fatface', serif;
   font-weight: 700;
   display: block;
-  overflow: hidden;
 }
 
 .heading > span {
   display: block;
-  transform: translateY(101%);
+  transform: translateY(35%);
   opacity: 0;
 }
 
 .heading.animateMe > span {
-  transition: transform var(--timing-short) ease-in, opacity var(--timing-long) ease-in;
+  transition: transform var(--timing-long) ease-in, opacity var(--timing-long) ease-in;
   opacity: 1;
   transform: translateY(0);
 }
@@ -85,13 +86,22 @@ body {
   width: 100%;
 }
 
-.frame::before {
+.framedBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.frame::before, .framedBackground::before {
   content: "";
   padding-bottom: var(--frame-aspect, 100%);
   display: block;
 }
 
-.frame img, .section > img, .fullSection > img {
+.frame > img, .section > img, .fullSection > img, .framedBackground > img {
   position: absolute;
   top: 0;
   left: 0;
@@ -100,11 +110,96 @@ body {
   object-fit: cover;
 }
 
+/* ------ */
+/* BUTTON */
+/* ------ */
+.buttons {
+  margin-top: var(--space1);
+  display: flex;
+}
+
+[class*="Button"] svg {
+  width: 1em;
+  height: auto;
+  margin-right: 0.25em;
+}
+
+[class*="Button"]:not(:only-child, .textButton)  {
+  margin-right: var(--space3);
+}
+
+.filledButton, .outlinedButton, .textButton {
+  display: block;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 
+    color var(--timing-short) ease, 
+    background-color var(--timing-short) ease, 
+    transform var(--timing-short) ease,
+    box-shadow var(--timing-short) ease,
+    border var(--timing-short) ease;
+}
+
+.filledButton, .outlinedButton {
+  padding: 0.8em 2em;
+  border: 1px solid rgba(var(--color-button));
+  border-radius: 999px;
+  box-shadow: 0px 5px 5px 0px rgba(var(--color-button), 0.25);
+}
+
+.filledButton, .outlinedButton:hover {
+  color: rgba(var(--color-button-secondary));
+  background-color: rgba(var(--color-button));
+}
+
+.outlinedButton, .filledButton:hover {
+  background-color: transparent;
+  color: rgba(var(--color-button));
+}
+
+.outlinedButton:hover, .filledButton:hover {
+  box-shadow: 0px 5px 15px 1px rgba(var(--color-button), 0.25);
+  transform: translateY(-5px);
+}
+
+.textButton {
+  color: rgba(var(--color-button));
+  font-size: 14px;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  transition: opacity var(--timing-short) ease;
+  margin-right: 2em;
+  margin-left: 2em;
+}
+
+.textButton::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: rgba(var(--color-button));
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: -100%;
+  transition: transform var(--timing-short) ease, opacity var(--timing-short) ease;
+}
+
+.textButton:hover::before {
+  transform: translateX(100%);
+}
+
+.textButton:hover::before, .textButton:hover {
+  opacity: 0.5;
+}
+
 /* ---------- */
 /* ANIMATIONS */
 /* ---------- */
 .activeTransitions #Slider {
-  transition: transform var(--timing-long) ease-in-out;
+  transition: transform var(--timing-long) ease;
 }
 
 .activeMenu #Slider {
@@ -114,12 +209,20 @@ body {
 /* ------- */
 /* SECTION */
 /* ------- */
-.section, .fullSection, .fullSection > [class*="Block"] {
+.section, .fullSection > [class*="Block"] {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.fullSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+
 }
 
 .section {
@@ -143,6 +246,11 @@ body {
   max-width: var(--page-width);
 }
 
+.blockContent {
+  position: relative;
+  z-index: 1;
+}
+
 @media screen and (max-width: 1023px) {
   .section > .oddBlock {
     margin-bottom: var(--space-gutter)
@@ -151,32 +259,41 @@ body {
 
 @media screen and (min-width: 1024px) {
   .section > .oddBlock, .section > .evenBlock, 
-  .fullSection > .oddBlock > *, .fullSection > .evenBlock > * {
+  .fullSection > .oddBlock > div, .fullSection > .evenBlock > div {
     max-width: calc((var(--page-width) / 2) - (var(--space-gutter) * 2));
   }
   
   .fullSection > .oddBlock, .fullSection > .evenBlock {
     flex: 1 1 50%;
+    min-height: 100%;
   }
   
   .section > .oddBlock {
     flex: 1 1 calc(50% - var(--space-gutter));
     margin-right: var(--space-gutter);
   }
-
+  
   .section > .evenBlock {
     flex: 1 1 calc(50% - var(--space-gutter));
     margin-left: var(--space-gutter);
   }
+  
+  .fullSection > .oddBlock {
+    padding-right: 0;
+  }
+  
+  .fullSection > .evenBlock {
+    padding-left: 0;
+  }
 
-  .fullSection > .oddBlock > * {
+  .fullSection > .oddBlock > div {
     flex: 0 1 calc(100% - var(--space-gutter));
     margin-right: var(--space-gutter); 
     justify-content: end;
 
   }
 
-  .fullSection > .evenBlock > * {
+  .fullSection > .evenBlock > div {
     flex: 0 1 calc(100% - var(--space-gutter));
     margin-left: var(--space-gutter); 
     justify-content: start;
@@ -217,15 +334,17 @@ body {
   flex: 0 0 auto;
   color: rgba(var(--color-font-secondary));
   background-color: rgba(var(--color-foreground));
-  margin-top: var(--navigation-height, 0px);
-  height: calc(100vh - var(--navigation-height));
-  padding: var(--space-section) var(--space-gutter);
+  height: 100vh;
+  padding: var(--navigation-height, 0px) var(--space-gutter) var(--space-section) var(--space-gutter);
   position: relative;
   z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
 #Menu li {
-  font-size: 5rem;
+  font-size: 3rem;
   font-family: 'Abril Fatface', serif;
   width: 100%;
   line-height: 1;
@@ -233,7 +352,7 @@ body {
 }
 
 #Menu li:not(:last-child) {
-  margin-bottom: var(--space-gutter);
+  margin-bottom: 25%;
 }
 
 #Menu a {
@@ -245,7 +364,7 @@ body {
 }
 
 #Menu span {
-  padding-right: calc(var(--space-gutter) + 0.75em);
+  margin-right: calc(var(--space-gutter) + 0.75em);
 }
 
 #Menu svg {
@@ -269,15 +388,15 @@ body {
   }
   
   .activeMenu #Menu li:nth-child(1) a {
-    transition: transform 400ms ease-in 100ms;
+    transition: transform var(--timing-short) ease-in 0ms;
   }
   
   .activeMenu #Menu li:nth-child(2) a {
-    transition: transform 300ms ease-in 200ms;
+    transition: transform var(--timing-short) ease-in 100ms;
   }
 
   .activeMenu #Menu li:nth-child(3) a {
-    transition: transform 200ms ease-in 300ms;
+    transition: transform var(--timing-short) ease-in 200ms;
   }
 
   #Menu svg {
@@ -321,6 +440,7 @@ body {
   left: 0;
   width: 100%;
   height: calc(100% - 100vh);
+  transition: transform var(--timing-long) ease;
 }
 
 #NavigationBackground::before {
@@ -331,6 +451,10 @@ body {
   width: 100%;
   height: var(--navigation-height);
   background-color: rgba(var(--color-background));
+}
+
+.activeMenu #NavigationBackground {
+  transform: translateX(var(--move-content));
 }
 
 #Logo {
@@ -374,11 +498,28 @@ body {
   width: 100%;
 }
 
+
+/* ------ */
+/* SLIDER */
+/* ------ */
+.sliderSection {
+  padding-left: var(--space-gutter);
+}
+
+.slides {
+  display: flex;
+  overflow: hidden;
+}
+
+.slider {
+  position: relative;
+  flex: 0 0 45%;
+}
+
 /*
  To do:
   -(on hold) change background color
   -(on hold) create animate hamburger
-  - btns
-  -start to style 
+  -slider
   -setup content
 */
