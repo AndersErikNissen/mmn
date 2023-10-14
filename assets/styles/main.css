@@ -45,7 +45,7 @@ html {
 
 body {
   background-color: rgba(var(--color-background));
-  background-color: greenyellow;
+  background-color: grey;
   position: relative;
 }
 
@@ -127,6 +127,37 @@ body {
 
 [class*="Button"]:not(:only-child, .textButton)  {
   margin-right: var(--space3);
+}
+
+.uniqueButton {
+  position: relative;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2em 2.5em;
+  text-decoration: none;
+  color: rgba(var(--color-button-secondary));
+}
+
+.uniqueButton .buttonLabel {
+  position: relative;
+  display: block;
+}
+
+.uniqueButton .background {
+  color: rgba(var(--color-button));
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.uniqueButton .background svg {
+  width: 100%;
+  height: 100%;
 }
 
 .filledButton, .outlinedButton, .textButton {
