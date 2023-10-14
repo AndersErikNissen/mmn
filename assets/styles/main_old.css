@@ -45,7 +45,6 @@ html {
 
 body {
   background-color: rgba(var(--color-background));
-  background-color: greenyellow;
   position: relative;
 }
 
@@ -196,6 +195,17 @@ body {
   opacity: 0.5;
 }
 
+/* ---------- */
+/* ANIMATIONS */
+/* ---------- */
+.activeTransitions #Slider {
+  transition: transform var(--timing-long) ease;
+}
+
+.activeMenu #Slider {
+  transform: translateX(var(--move-content));
+}
+
 /* ------- */
 /* SECTION */
 /* ------- */
@@ -297,6 +307,110 @@ body {
   overflow: hidden;
 }
 
+#Shell {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#Slider {
+  width: 100%;
+  display: flex;
+}
+
+#Content {
+  width: 100%;
+  flex: 0 0 100%;
+}
+
+#Content, #Menu {
+  max-width: 100%;
+}
+
+/* ---- */
+/* MENU */
+/* ---- */
+#Menu {
+  flex: 0 0 auto;
+  color: rgba(var(--color-font-secondary));
+  background-color: rgba(var(--color-foreground));
+  height: 100vh;
+  padding: var(--navigation-height, 0px) var(--space-gutter) var(--space-section) var(--space-gutter);
+  position: relative;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+#Menu li {
+  font-size: 3rem;
+  font-family: 'Abril Fatface', serif;
+  width: 100%;
+  line-height: 1;
+  overflow: hidden;
+}
+
+#Menu li:not(:last-child) {
+  margin-bottom: 25%;
+}
+
+#Menu a {
+  color: rgba(var(--color-font-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+#Menu span {
+  margin-right: calc(var(--space-gutter) + 0.75em);
+}
+
+#Menu svg {
+  width: 0.75em;
+  height: auto;
+}
+
+@media screen and (max-width: 1023px) {
+  #Menu {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #Menu a {
+    transform: translateY(-101%);
+  }
+  
+  .activeMenu #Menu a {
+    transform: translateY(0);
+  }
+  
+  .activeMenu #Menu li:nth-child(1) a {
+    transition: transform var(--timing-short) ease-in 0ms;
+  }
+  
+  .activeMenu #Menu li:nth-child(2) a {
+    transition: transform var(--timing-short) ease-in 100ms;
+  }
+
+  .activeMenu #Menu li:nth-child(3) a {
+    transition: transform var(--timing-short) ease-in 200ms;
+  }
+
+  #Menu svg {
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity var(--timing-short) ease-in, transform var(--timing-short) ease-in;
+  }
+  
+  #Menu li:hover svg {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* -------------- */
 /* TOP NAVIGATION */
 /* -------------- */
@@ -309,39 +423,43 @@ body {
   width: 100%;
 }
 
-#NavigationBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
+#Navigation > .navigationContent {
   width: 100%;
-  height: 100%;
-  color: rgba(var(--color-background));
-}
-
-#NavigationBackground > .background {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(var(--color-background));
-}
-
-#NavigationBackground > svg {
-  margin-top: -1px;
-  width: 100%;
-  height: 10px;
-  display: block;
-}
-
-#NavigationContent {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+  max-width: var(--page-width);
+  padding: var(--space-block) var(--space-gutter);
+}
+
+#NavigationBackground {
+  position: absolute;
+  pointer-events: none;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 100vh);
+  transition: transform var(--timing-long) ease;
+}
+
+#NavigationBackground::before {
+  content: "";
+  display: block;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--navigation-height);
+  background-color: rgba(var(--color-background));
+}
+
+.activeMenu #NavigationBackground {
+  transform: translateX(var(--move-content));
 }
 
 #Logo {
   color: inherit;
   width: 50px;
-  height: auto;
   display: block;
 }
 
@@ -349,3 +467,59 @@ body {
   width: 100%;
   height: auto;
 }
+
+#MenuButton {
+  font-weight: 700;
+  font-family: 'Abril Fatface', serif;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.menuButtonContent {
+  pointer-events: none;
+  position: relative;
+  transition: transform var(--timing-long) ease-in;
+}
+
+.activeMenu .menuButtonContent {
+  transform: translateY(100%);
+}
+
+.menuButtonFirstStage, .menuButtonSecondStage {
+  display: block;
+  text-align: center;
+}
+
+.menuButtonSecondStage {
+  transform: translateY(-100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+/* ------ */
+/* SLIDER */
+/* ------ */
+.sliderSection {
+  padding-left: var(--space-gutter);
+}
+
+.slides {
+  display: flex;
+  overflow: hidden;
+}
+
+.slider {
+  position: relative;
+  flex: 0 0 45%;
+}
+
+/*
+ To do:
+  -(on hold) change background color
+  -(on hold) create animate hamburger
+  -slider
+  -setup content
+*/
