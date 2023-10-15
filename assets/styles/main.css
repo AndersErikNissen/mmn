@@ -55,6 +55,7 @@ body {
   font-family: 'Abril Fatface', serif;
   font-weight: 700;
   display: block;
+  max-width: 12ch;
 }
 
 .heading > span {
@@ -117,6 +118,7 @@ body {
 .buttons {
   margin-top: var(--space1);
   display: flex;
+  align-items: center;
 }
 
 [class*="Button"] svg {
@@ -144,6 +146,7 @@ body {
 .uniqueButton .buttonLabel {
   position: relative;
   display: block;
+  transition: color var(--timing-short) ease-in;
 }
 
 .uniqueButton .background {
@@ -158,6 +161,18 @@ body {
 .uniqueButton .background svg {
   width: 100%;
   height: 100%;
+}
+
+.uniqueButton .background svg path {
+  transition: fill var(--timing-short) ease-in, color var(--timing-short) ease-in;
+}
+
+.uniqueButton:hover {
+  color: rgba(var(--color-button));
+}
+
+.uniqueButton:hover .background {
+  color: rgba(var(--color-button-secondary));
 }
 
 .filledButton, .outlinedButton, .textButton {
@@ -195,6 +210,7 @@ body {
 }
 
 .textButton {
+  display: block;
   color: rgba(var(--color-button));
   font-size: 14px;
   margin-top: 0.8em;
@@ -205,6 +221,7 @@ body {
   transition: opacity var(--timing-short) ease;
   margin-right: 2em;
   margin-left: 2em;
+  text-decoration: none;
 }
 
 .textButton::before {
@@ -243,7 +260,6 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
-
 }
 
 .section {
@@ -347,11 +363,12 @@ body {
   width: 100%;
   height: 100%;
   color: rgba(var(--color-background));
+  opacity: 0;
 }
 
 #NavigationBackground > .background {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 20px);
   background-color: rgba(var(--color-background));
 }
 
@@ -367,13 +384,43 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px var(--space-gutter) 20px;
+  max-width: var(--page-width);
+}
+
+#NavigationContent .oddText, #NavigationContent .evenText {
+  flex: 1 1 100%;
+  display: flex;
+}
+
+#NavigationContent .textButton {
+  margin: 0;
+  padding: 0.2em 0;
+}
+
+#NavigationContent .oddText a:nth-child(1), #NavigationContent .evenText a:nth-child(1) {
+  margin-right: var(--space1);
+}
+
+#NavigationContent .evenText {
+  justify-content: end;
+}
+
+#Navigation.animateMe #NavigationBackground {
+  opacity: 1;
+  transition: opacity var(--timing-short) ease-in;
+}
+
+#Navigation.animateMe #Logo {
+  flex: 0 0 60px;
 }
 
 #Logo {
+  flex: 0 0 90px;
   color: inherit;
-  width: 50px;
   height: auto;
   display: block;
+  transition: flex var(--timing-short) ease-in;
 }
 
 #Logo svg {

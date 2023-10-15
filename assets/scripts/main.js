@@ -20,3 +20,26 @@
   let relevantHeadings = document.querySelectorAll('.heading');
   relevantHeadings.forEach(heading => observer.observe(heading));
 })();
+
+// Top navigation 
+(function() {
+  const topNavigation = document.querySelector('#Navigation');
+  let scrollAmount = 0;
+  let hasScrolled = false;
+  
+  const handleScroll = (e) => {
+    if (scrollAmount >= 1) {
+      if (hasScrolled) {
+        window.removeEventListener('scroll', handleScroll);
+      } else {
+        topNavigation.classList.add('animateMe');
+        hasScrolled = true;
+      }
+      return;
+    }
+
+    scrollAmount++;
+  }
+
+  window.addEventListener('scroll', handleScroll);
+})();
