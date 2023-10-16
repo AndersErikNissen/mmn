@@ -427,3 +427,33 @@ body {
   width: 100%;
   height: auto;
 }
+
+/* -------- */
+/* CAROUSEL */
+/* -------- */
+.carouselSection {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.carouselSection .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--timing-long) ease-in;
+}
+
+.carouselSection .content {
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
