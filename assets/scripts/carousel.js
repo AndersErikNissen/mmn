@@ -43,6 +43,7 @@
         allSlideNodes.forEach((slide, index) => allSlides.push(new Slide(slide, index)));
         return allSlides;
       }.bind(this)();
+      this.slideAmount = this.slides.length;
 
       this.buttons = function() {
         let allButtonNodes = this.node.querySelectorAll('.carouselButton');
@@ -54,10 +55,16 @@
       this.handleSlides = function(carousel) {
         function sliderHandler(e) {
           let newIndex = carousel.slideIndex + e.detail.polar;
-          console.log(newIndex)
-          let newSlide = carousel.slides[newIndex];
-          carousel.slideIndex = newIndex;
-          carousel.slider.style.transform = `translateX(-${newSlide.placing})`;
+          
+          if (newIndex == carousel.slideAmount) {
+            let slide = carousel.slides[0];
+            slide.node.style.transform = `translateX(${(carousel.slideAmount - 1) * 100}%)`;
+          } else {
+            carousel.slideIndex = newIndex;
+            let newSlide = carousel.slides[newIndex];
+
+          }
+          carousel.slider.style.transform = `translateX(-${newSlide.placing || (carousel.slideAmount - 1) * 100})`;
         }
   
         carousel.node.addEventListener('carousel:prev', sliderHandler);
