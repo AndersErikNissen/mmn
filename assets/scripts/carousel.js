@@ -1,21 +1,4 @@
 (function() {
-  class Slide {
-    constructor(node, index) {
-      this.node = node;
-      this.placing = (100 * index) + "%"  
-      this.height = this.getDimentions.height;
-      this.width = this.getDimentions.width;
-    }
-
-    get getDimentions() {
-      const rect = this.node.getBoundingClientRect();
-      return {
-        height: rect.height,
-        width: rect.width,
-      }
-    }
-  }
-
   class Button {
     constructor(node, index) {
       this.node = node;
@@ -36,43 +19,70 @@
     constructor(node) {
       this.node = node;
       this.slider = node.querySelector('.slider');
-      this.slideIndex = 0;
-      this.slides = function() {
-        let allSlideNodes = this.node.querySelectorAll('.slide');
-        let allSlides = [];
-        allSlideNodes.forEach((slide, index) => allSlides.push(new Slide(slide, index)));
-        return allSlides;
-      }.bind(this)();
-      this.slideAmount = this.slides.length;
+      this.multiplier = 100;
+      this.index = 0;
+      this.slides = node.querySelectorAll('.slide');
 
       this.buttons = function() {
-        let allButtonNodes = this.node.querySelectorAll('.carouselButton');
+        let allButtonNodes = node.querySelectorAll('.carouselButton');
         let allButtons = [];
-        allButtonNodes.forEach((button, index) => {console.log(index,button,"allButton button");allButtons.push(new Button(button, index))});
+        allButtonNodes.forEach((button, index) => allButtons.push(new Button(button, index)));
         return allButtons;
       }.bind(this)();
-      
-      this.handleSlides = function(carousel) {
-        function sliderHandler(e) {
-          let newIndex = carousel.slideIndex + e.detail.polar;
-          
-          if (newIndex == carousel.slideAmount) {
-            let slide = carousel.slides[0];
-            slide.node.style.transform = `translateX(${(carousel.slideAmount - 1) * 100}%)`;
-          } else {
-            carousel.slideIndex = newIndex;
-            let newSlide = carousel.slides[newIndex];
-
-          }
-          carousel.slider.style.transform = `translateX(-${newSlide.placing || (carousel.slideAmount - 1) * 100})`;
-        }
-  
-        carousel.node.addEventListener('carousel:prev', sliderHandler);
-        carousel.node.addEventListener('carousel:next', sliderHandler);
-      }(this);
     }
+
+    /*
+      init()
+        - add event listeners
+      
+      handler()
+      - based on event move left or right
+      - handle index
+        - current index
+        - next index - based on next/prev
+
+      first -> last()
+      - move last
+      - normal transition -> no transition to reflect "other -> last" after
+      other()
+      - move left or right
+      last -> first()
+    
+    */
+
+    slideLeft() {
+      console.log("Slide left");
+
+      let index = this.index - 1;
+      let lastSlide = this.slides[this.slides.length - 1];
+      if (index === 0) {
+        lastSlide.style.transform = `translateX(-${this.multiplier}%)`;
+      }
+      this.slider.transform = `translateX(-${index * this.multiplier})`;
+
+      this.index = index;
+    }
+    
+    slideRight() {
+      console.log("Slide right");
+      
+      let index = this.index + 1;
+      let firstSlide = this.slides[0];
+      if (index === this.slides.length - 1) {
+        firstSlide.style.transform = `translateX(${this.multiplier * this.slides.length})`;
+      }
+      
+      this.slider.transform = `translateX(${-index * this.multiplier})`;
+      this.index = index;
+    }
+ 
+    moveSlider() {
+      this.node.addEventListener('carousel:prev', this.slideLeft.bind(this));
+      this.node.addEventListener('carousel:next', this.slideRight.bind(this));
+    };
   }
 
   const indexCarousel = new Carousel(document.querySelector("#CaseCarousel"));
+  indexCarousel.moveSlider();
   console.log(indexCarousel)
 })();
