@@ -388,22 +388,17 @@ body {
   max-width: var(--page-width);
 }
 
-#NavigationContent .oddText, #NavigationContent .evenText {
-  flex: 1 1 100%;
+#NavigationContent .links {
   display: flex;
+}
+
+#NavigationContent .links a:not(:last-child) {
+  margin-right: var(--space1);
 }
 
 #NavigationContent .textButton {
   margin: 0;
   padding: 0.2em 0;
-}
-
-#NavigationContent .oddText a:nth-child(1), #NavigationContent .evenText a:nth-child(1) {
-  margin-right: var(--space1);
-}
-
-#NavigationContent .evenText {
-  justify-content: end;
 }
 
 #Navigation.animateMe #NavigationBackground {
@@ -435,6 +430,7 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .carouselSection .slider {
@@ -443,8 +439,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  transition: transform var(--timing-long) ease-in;
 }
+
+.carouselSection:not(.noTransition) .slider {
+  transition: transform 1s ease-in;
+}
+
 
 .carouselSection .content {
   position: relative;
@@ -456,4 +456,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+
+  transform: translateX(calc(100% * var(--slide-index, 0)));
 }
