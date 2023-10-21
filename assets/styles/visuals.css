@@ -23,6 +23,11 @@
   transition: transform var(--timing-long) ease-in;
 }
 
+.visualFrame img.landscape {
+  width: auto;
+  height: 50%;
+}
+
 .visualFrame:hover img {
   transform: scale(1.05) translate(-47.5%, -47.5%);
   
@@ -47,7 +52,7 @@
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding-top: 50%;
+  padding-top: 50vh;
 }
 
 .visualCarousel > div {
@@ -63,11 +68,18 @@
   flex: 0 0 auto;
   height: 100%;
   display: flex;
+  align-items: center;
+  animation: infiCarousel 40s infinite linear;
+}
+
+.visualCarousel > div:hover > div {
+  animation-play-state: paused;
 }
 
 .visualCarousel img {
   width: auto;
-  height: 90%;
+  height: calc(100% - (var(--space-gutter) * 2));
+  margin-right: var(--space-gutter)
 }
 
 /* 
@@ -75,10 +87,9 @@ transform: translateX(-45%)
 .carouselCart {
   display: flex;
   justify-content: space-between;
-  animation: infiCarousel 10s infinite linear;
 } */
 
 @keyframes infiCarousel {
   from { transform: translateX(0%) }
-  to { transform: translateX(-50%) }
+  to { transform: translateX(-100%) }
 }
