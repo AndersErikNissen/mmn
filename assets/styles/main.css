@@ -280,7 +280,7 @@ body {
 .section > .singleBlock, .fullSection > .singleBlock {
   flex: 1 1 100%;
   width: 100%;
-  max-width: var(--page-width);
+  max-width: calc(var(--page-width) - (var(--space-gutter) * 2));
 }
 
 .blockContent {
@@ -386,6 +386,7 @@ body {
   align-items: center;
   padding: 10px var(--space-gutter) 20px;
   max-width: var(--page-width);
+  margin: 0 auto;
 }
 
 #NavigationContent .links {

@@ -1,0 +1,23 @@
+.visualGrid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.visualItem, .visualFrame, .fullVisualItem {
+  padding-top: 50%;
+}
+
+.fullVisualItem {
+}
+
+.visualItem, .visualFrame, .fullVisualItem {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .visualItem, .visualFrame {
+    flex: 0 0 50%;
+  }
+}
