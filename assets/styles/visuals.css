@@ -95,6 +95,9 @@
 
 
 @keyframes rouletteInit {
+  4.16% {
+    transform: translateY(0%);
+  }
   8.33%, 91.65% {
     transform: translateY(-100%);
   }
@@ -106,8 +109,7 @@
     opacity: 1;
     transform: translateY(100%);
   }
-
-  100% {
+  95.85%, 100% {
     transform: translateX(0%);
   }
 }
@@ -125,6 +127,9 @@
   8.33% {
     transform: translateY(0%);
   }
+  12.49% {
+    transform: translateY(-100%);
+  }
   16.66% {
     transform: translateY(-100%);
   }
@@ -133,3 +138,6 @@
   }
 }
 
+20.82% {
+  transform: translateY(0%);
+}
