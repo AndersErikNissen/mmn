@@ -82,14 +82,54 @@
   margin-right: var(--space-gutter)
 }
 
-/* 
-transform: translateX(-45%)
-.carouselCart {
-  display: flex;
-  justify-content: space-between;
-} */
-
 @keyframes infiCarousel {
   from { transform: translateX(0%) }
   to { transform: translateX(-100%) }
 }
+
+/* -------- */
+/* ROULETTE */
+/* -------- */
+
+
+
+
+@keyframes rouletteInit {
+  8.33%, 91.65% {
+    transform: translateY(-100%);
+  }
+  91.66% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  91.67% {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes roulette1 {
+  8.33% {
+    transform: translateY(-100%);
+  }
+  16.66%, 100% {
+    transform: translateY(-200%);
+  }
+}
+
+@keyframes roulette2 {
+  8.33% {
+    transform: translateY(0%);
+  }
+  16.66% {
+    transform: translateY(-100%);
+  }
+  25%, 100% {
+    transform: translateY(-200%);
+  }
+}
+
