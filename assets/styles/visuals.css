@@ -1,3 +1,7 @@
+:root {
+  --roulette-timing: 10s;
+}
+
 .visualGrid {
   display: flex;
   flex-wrap: wrap;
@@ -12,18 +16,21 @@
   background-color: rgba(var(--frame-background, 0, 0, 0, 0));
 }
 
-.visualFrame img {
+.visualFrame img, .visualRolette img {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 50%;
   height: auto;
   transform: translate(-50%, -50%);
-  box-shadow: var(--box-shadow);
   transition: transform var(--timing-long) ease-in;
 }
 
-.visualFrame img.landscape {
+.visualFrame img {
+  box-shadow: var(--box-shadow);
+}
+
+.visualFrame img.landscape, .visualRolette img.landscape {
   width: auto;
   height: 50%;
 }
@@ -40,8 +47,8 @@
 
 @media (min-width: 1024px) {
   .visualItem, .visualFrame {
-    flex: 0 0 25%;
-    padding-top: 25%;
+    flex: 0 0 33%;
+    padding-top: 33%;
   }
 }
 
@@ -94,7 +101,7 @@
   flex: 0 0 100%;
   width: 100%;
   position: relative;
-  background-color: aqua;
+  overflow: hidden;
 }
 
 .visualRolette > div {
@@ -105,20 +112,8 @@
   height: 100%;
 }
 .visualRolette > div:not(:first-child) {
-  top: 100%;
-  
+  top: 100%; 
 }
-
-.visualRolette > div:first-child {
-  background-color: yellowgreen;
-  animation: rouletteInit 5s linear infinite;
-}
-
-.visualRolette > div:nth-child(2) {
-  background-color: teal;
-  animation: roulette1 5s linear infinite;
-}
-
 
 @media (min-width: 1024px) {
   .visualRolette {
@@ -128,11 +123,34 @@
   }
 }
 
+.visualRolette > div:first-child {
+  animation: rouletteInit var(--roulette-timing) linear infinite;
+}
 
+.visualRolette > div:nth-child(2) {
+  animation: roulette1 var(--roulette-timing) linear infinite;
+}
+
+.visualRolette > div:nth-child(3) {
+  animation: roulette2 var(--roulette-timing) linear infinite;
+}
+
+.visualRolette > div:nth-child(4) {
+  animation: roulette3 var(--roulette-timing) linear infinite;
+}
+
+.visualRolette > div:nth-child(5) {
+  animation: roulette4 var(--roulette-timing) linear infinite;
+}
+
+.visualRolette > div:nth-child(6) {
+  animation: roulette5 var(--roulette-timing) linear infinite;
+}
 
 @keyframes rouletteInit {
   4.16% {
     transform: translateY(0%);
+    opacity: 1;
   }
   12.5%, 49% {
     transform: translateY(-100%);
@@ -144,16 +162,14 @@
   }
   51% {
     transform: translateY(100%);
-  }
-  87.5% {
-    opacity: 1;
-    transform: translateY(100%);
+    opacity: 0;
   }
   87.5% {
     opacity: 1;
     transform: translateY(100%);
   }
   95.83%, 100% {
+    opacity: 1;
     transform: translateY(0%);
   }
 }
@@ -171,20 +187,49 @@
 }
 
 @keyframes roulette2 {
-  8.33% {
+  20.83% {
     transform: translateY(0%);
   }
-  12.49% {
+  29.16%, 37.5% {
     transform: translateY(-100%);
   }
-  16.66% {
-    transform: translateY(-100%);
-  }
-  25%, 100% {
+  45.83%, 100% {
     transform: translateY(-200%);
   }
 }
 
-20.82% {
-  transform: translateY(0%);
+@keyframes roulette3 {
+  37.5% {
+    transform: translateY(0%);
+  }
+  45.83%, 54.16% {
+    transform: translateY(-100%);
+  }
+  62.5%, 100% {
+    transform: translateY(-200%);
+  }
+}
+
+@keyframes roulette4 {
+  54.16% {
+    transform: translateY(0%);
+  }
+  62.5%, 70.83% {
+    transform: translateY(-100%);
+  }
+  79.16%, 100% {
+    transform: translateY(-200%);
+  }
+}
+
+@keyframes roulette5 {
+  70.83% {
+    transform: translateY(0%);
+  }
+  79.16%, 87.5% {
+    transform: translateY(-100%);
+  }
+  95.83%, 100% {
+    transform: translateY(-200%);
+  }
 }
