@@ -29,19 +29,56 @@
       }.bind(this)();
 
     }
+
     init() {
-      this.node.addEventListener('move:slider', this.slideEvent.bind(this));
-      this.boundrySlide(this.index);
+      this.node.addEventListener('move:slider', this.moveSlider.bind(this));
     };
 
-    boundrySlide(i) {
-      if (i === 0) {
-        this.slides[this.lastIndex].style.transform = 'translateX(-100%)';
-      }
+    moveSlider(e) {
+      const changeCssVariable = (i, variableIndex = i) => this.slides[i].style.setProperty('--slide-index', variableIndex); 
+      let timing = 1000;
+      let indexLast = this.slides.length - 1;
+      let index = this.index + e.detail.index;
+      if (index === indexLast) changeCssVariable(indexLast);
+      if (index > indexLast) {
+        const reset = new Promise((resolve) => {
+          changeCssVariable(0, indexLast + 1);
+          this.slider.style.transform = `translateX(${-100 * index}%)`; 
+          setTimeout(() => {
+            resolve();
+          }, timing);
+        });
+
+        reset.then(() => {
+          this.node.classList.add('noTransition');
+          this.slider.style.transform = 'translateX(0%)';
+          changeCssVariable(0);
+          this.node.offsetHeight;
+          this.node.classList.remove('noTransition')
+        });
+
+        this.index = 0;
+        return;
+      };
       
-      if (i === this.lastIndex) {
-        this.slides[0].style.transform = 'translateX(-' + (this.lastIndex * 100) + ')';
-      }
+      this.slider.style.transform = `translateX(${-100 * index}%)`; 
+      this.index = index;
+    }
+
+    prepareSlides(i) {
+      setTimeout(() => {
+        this.node.classList.add('noTransition');
+        console.log("first>last", (this.lastIndex * (this.multiplier * -1)), (this.lastIndex * this.multiplier))
+        
+        nextIndex = this.lastIndex;
+
+        this.slides[this.lastIndex].style.transform = 'translateX(' + (this.lastIndex * (this.multiplier * -1)) + '%)';
+        this.slider.style.transform = 'translateX(' + (this.lastIndex * this.multiplier) + '%)';
+      },1000);
+      
+      setTimeout(() => {
+        this.node.classList.remove('noTransition');
+      }, 1010)
     }
 
     slideEvent(e) {
@@ -52,22 +89,22 @@
       
       console.warn("SlideEvent",nextIndex, this.multiplier, this.slider)
       if (nextIndex === 0) this.slides[this.lastIndex].style.transform = 'translateX(-100%)';
-      if (nextIndex === this.lastIndex) this.slides[0].style.transform = 'translateX(-' + lastSlideTransform + ')';
+      if (nextIndex === this.lastIndex) this.slides[0].style.transform = 'translateX(' + lastSlideTransform + ')';
       
       if (nextIndex === -1) {
-        setTimeout(() => {
-          this.node.classList.add('noTransition');
-          console.log("first>last", (this.lastIndex * (this.multiplier * -1)), (this.lastIndex * this.multiplier))
+        // setTimeout(() => {
+        //   this.node.classList.add('noTransition');
+        //   console.log("first>last", (this.lastIndex * (this.multiplier * -1)), (this.lastIndex * this.multiplier))
           
-          nextIndex = this.lastIndex;
+        //   nextIndex = this.lastIndex;
 
-          this.slides[this.lastIndex].style.transform = 'translateX(' + (this.lastIndex * (this.multiplier * -1)) + '%)';
-          this.slider.style.transform = 'translateX(' + (this.lastIndex * this.multiplier) + '%)';
-        },1000);
+        //   this.slides[this.lastIndex].style.transform = 'translateX(' + (this.lastIndex * (this.multiplier * -1)) + '%)';
+        //   this.slider.style.transform = 'translateX(' + (this.lastIndex * this.multiplier) + '%)';
+        // },1000);
         
-        setTimeout(() => {
-          this.node.classList.remove('noTransition');
-        }, 1010)
+        // setTimeout(() => {
+        //   this.node.classList.remove('noTransition');
+        // }, 1010)
       }
       
       this.index = nextIndex;
