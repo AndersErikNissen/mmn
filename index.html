@@ -123,7 +123,7 @@
     </div>
   </section>
 
-  <section class="carouselSection" id="CaseCarousel">
+  <section class="carouselSection" id="CaseCarousel" style="--carousel-timing: 1000;--carousel-delay: 4000;">
     <div class="slider">
       <div class="slide" style="background-color: greenyellow"></div>
       <div class="slide" style="--slide-index: 1;background-color: goldenrod"></div>
@@ -131,9 +131,17 @@
       <div class="slide" style="--slide-index: -1;background-color: peachpuff"></div>
     </div>
     <div class="content">
-      <div>
-        <div class="prevSlide">Prev</div>
-        <div class="nextSlide">Next</div>
+      <div class="carouselControls">
+        <div class="prevSlide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="42" height="36" viewBox="0 0 42 36" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M-1.36852e-05 18L18 36L20.1213 33.8787L5.74263 19.5L41.6213 19.5L41.6213 16.5L5.74266 16.5L20.1213 2.12132L18 -2.06504e-06L1.68324e-05 18L3.12134 18L-1.36852e-05 18Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="nextSlide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="43" height="36" viewBox="0 0 43 36" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M42.1213 18L24.1213 0L22 2.12131L36.3787 16.5H0.5V19.5H36.3787L22 33.8787L24.1213 36L42.1213 18Z" fill="currentColor"/>
+          </svg>
+        </div>
       </div>
     </div>
   </section>

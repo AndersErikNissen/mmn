@@ -1,10 +1,12 @@
+"use strict";
+
 (function() {
   class Button {
     constructor(node) {
       this.node = node;
       this.init = function(self) {
         function signal(e) {
-          self.node.dispatchEvent(new CustomEvent('move:slider', { bubbles: true, detail: { index: self.node.classList.contains('prevSlide') ? -1 : 1 }}));
+          self.node.dispatchEvent(new CustomEvent('move:slider', { bubbles: true, detail: { index: self.node.classList.contains('prevSlide') ? -1 : 1, buttonClick: true }}));
         }
         self.node.addEventListener('click', signal);
       }(this);
@@ -16,10 +18,14 @@
     constructor(node) {
       this.node = node;
       this.slider = node.querySelector('.slider');
-      this.multiplier = -100;
+      this.sliderIsActive = false;
+      this.timing = Number(node.style.getPropertyValue('--carousel-timing')) || 1000;
+      this.delay = Number(node.style.getPropertyValue('--carousel-delay')) || 4000;
       this.index = 0;
       this.slides = node.querySelectorAll('.slide');
-      this.lastIndex = this.slides.length - 1;
+      this.timer = setInterval(() => {
+        this.node.dispatchEvent(new CustomEvent('move:slider', { detail: { index: 1}}));
+      }, this.delay);
 
       this.buttons = function() {
         let allButtonNodes = node.querySelectorAll('.prevSlide, .nextSlide');
@@ -28,135 +34,96 @@
         return allButtons;
       }.bind(this)();
 
+      this.init = function() {
+        this.node.addEventListener('move:slider', this.moveSlider.bind(this));
+        
+      }.bind(this)();
     }
 
-    init() {
-      this.node.addEventListener('move:slider', this.moveSlider.bind(this));
-    };
+    timer() {
+      const callback = () => {
+        console.warn("callback")
+        ;
+      };
+
+      let interval = setInterval(callback, this.delay + this.timing);
+
+      return {
+        reset: function() {
+          if (interval) {
+            console.log("resetting")
+            clearInterval(interval);
+            setTimeout(() => {
+              interval = setInterval(callback, this.delay);
+            }, this.timing);
+          }
+        }.bind(this),
+      };
+    }
+
+    resetTimer() {
+      clearInterval(this.timer);
+
+      setTimeout(() => {
+        this.timer = setInterval(() => {
+          this.node.dispatchEvent(new CustomEvent('move:slider', { detail: { index: 1}}));
+        }, this.delay);
+      }, this.timing);
+    }
 
     moveSlider(e) {
-      const changeCssVariable = (i, variableIndex = i) => this.slides[i].style.setProperty('--slide-index', variableIndex); 
-      let timing = 1000;
+      if (this.sliderIsActive) return;
+      if (e.detail.buttonClick) this.resetTimer();
+      this.sliderIsActive = true;
+      const placeSlider = (i, variableIndex = i) => this.slides[i].style.setProperty('--slide-index', variableIndex); 
       let indexLast = this.slides.length - 1;
       let index = this.index + e.detail.index;
-      if (index === indexLast) changeCssVariable(indexLast);
+      if (index === indexLast) placeSlider(indexLast);
+      if (index === 0) placeSlider(0);
       if (index > indexLast) {
-        const reset = new Promise((resolve) => {
-          changeCssVariable(0, indexLast + 1);
-          this.slider.style.transform = `translateX(${-100 * index}%)`; 
-          setTimeout(() => {
-            resolve();
-          }, timing);
-        });
-
-        reset.then(() => {
+        placeSlider(0, indexLast + 1);
+        this.slider.style.transform = `translateX(${-100 * index}%)`; 
+        setTimeout(() => {
           this.node.classList.add('noTransition');
           this.slider.style.transform = 'translateX(0%)';
-          changeCssVariable(0);
+          placeSlider(0);
           this.node.offsetHeight;
-          this.node.classList.remove('noTransition')
-        });
+          this.node.classList.remove('noTransition');
+          placeSlider(indexLast, -1);
 
+          this.sliderIsActive = false;
+        }, this.timing);
+        
         this.index = 0;
         return;
       };
       
-      this.slider.style.transform = `translateX(${-100 * index}%)`; 
-      this.index = index;
-    }
-
-    prepareSlides(i) {
-      setTimeout(() => {
-        this.node.classList.add('noTransition');
-        console.log("first>last", (this.lastIndex * (this.multiplier * -1)), (this.lastIndex * this.multiplier))
-        
-        nextIndex = this.lastIndex;
-
-        this.slides[this.lastIndex].style.transform = 'translateX(' + (this.lastIndex * (this.multiplier * -1)) + '%)';
-        this.slider.style.transform = 'translateX(' + (this.lastIndex * this.multiplier) + '%)';
-      },1000);
-      
-      setTimeout(() => {
-        this.node.classList.remove('noTransition');
-      }, 1010)
-    }
-
-    slideEvent(e) {
-      let nextIndex = this.index + e.detail.index;
-      let lastSlideTransform = this.lastIndex * this.multiplier;
-      
-      this.slider.style.transform = 'translateX(' + (this.multiplier * nextIndex) + '%)';
-      
-      console.warn("SlideEvent",nextIndex, this.multiplier, this.slider)
-      if (nextIndex === 0) this.slides[this.lastIndex].style.transform = 'translateX(-100%)';
-      if (nextIndex === this.lastIndex) this.slides[0].style.transform = 'translateX(' + lastSlideTransform + ')';
-      
-      if (nextIndex === -1) {
-        // setTimeout(() => {
-        //   this.node.classList.add('noTransition');
-        //   console.log("first>last", (this.lastIndex * (this.multiplier * -1)), (this.lastIndex * this.multiplier))
+      if (index < 0) {
+        placeSlider(indexLast, -1);
+        this.slider.style.transform = `translateX(${-100 * index}%)`;
+        setTimeout(() => {
+          this.node.classList.add('noTransition');
+          this.slider.style.transform = `translateX(${-100 * indexLast}%)`;
+          placeSlider(indexLast);
+          this.node.offsetHeight;
+          this.node.classList.remove('noTransition');
+          placeSlider(0, indexLast + 1);
           
-        //   nextIndex = this.lastIndex;
+          this.sliderIsActive = false;
+        }, this.timing);
 
-        //   this.slides[this.lastIndex].style.transform = 'translateX(' + (this.lastIndex * (this.multiplier * -1)) + '%)';
-        //   this.slider.style.transform = 'translateX(' + (this.lastIndex * this.multiplier) + '%)';
-        // },1000);
-        
-        // setTimeout(() => {
-        //   this.node.classList.remove('noTransition');
-        // }, 1010)
+        this.index = indexLast;
+
+        return;
       }
-      
-      this.index = nextIndex;
-    }
 
-    /*
-      init()
-        - add event listeners
-      
-      handler()
-      - based on event move left or right
-      - handle index
-        - current index
-        - next index - based on next/prev
-
-      first -> last()
-      - move last
-      - normal transition -> no transition to reflect "other -> last" after
-      other()
-      - move left or right
-      last -> first()
-    
-    */
-
-    slideLeft() {
-      console.log("Slide left");
-
-      let index = this.index - 1;
-      let lastSlide = this.slides[this.slides.length - 1];
-      if (index === 0) {
-        lastSlide.style.transform = `translateX(-${this.multiplier}%)`;
-      }
-      this.slider.transform = `translateX(-${index * this.multiplier})`;
-
-      this.index = index;
-    }
-    
-    slideRight() {
-      console.log("Slide right");
-      
-      let index = this.index + 1;
-      let firstSlide = this.slides[0];
-      if (index === this.slides.length - 1) {
-        firstSlide.style.transform = `translateX(${this.multiplier * this.slides.length})`;
-      }
-      
-      this.slider.transform = `translateX(${-index * this.multiplier})`;
-      this.index = index;
+      this.slider.style.transform = `translateX(${-100 * index}%)`; 
+      setTimeout(() => {
+        this.index = index;
+        this.sliderIsActive = false;
+      }, this.timing);
     }
   }
 
   const indexCarousel = new Carousel(document.querySelector("#CaseCarousel"));
-  indexCarousel.init();
-  console.log(indexCarousel)
 })();

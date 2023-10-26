@@ -448,6 +448,29 @@ body {
   transition: transform 1s ease-in;
 }
 
+.carouselControls {
+  display: inline-flex;
+  border-radius: 99px;
+  align-items: center;
+  border: 2px rgba(var(--color-button)) solid;
+  padding: 5px;
+}
+
+.carouselControls .prevSlide, .carouselControls .nextSlide {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.carouselControls svg {
+  display: block;
+  width: 20px;
+  height: auto;
+  
+}
+
+.carouselControls .prevSlide:active svg, .carouselControls .nextSlide:active svg {
+  transform: scale(0.9);
+}
 
 .carouselSection .content {
   position: relative;
