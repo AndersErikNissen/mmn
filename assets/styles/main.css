@@ -51,7 +51,7 @@ body {
   position: relative;
 }
 
-.heading {
+.heading, .tinyHeading {
   font-size: 4rem;
   color: rgba(var(--color-font), 1);
   font-family: 'Abril Fatface', serif;
@@ -60,13 +60,17 @@ body {
   max-width: 12ch;
 }
 
-.heading > span {
+.tinyHeading {
+  font-size: 3rem;
+}
+
+.heading > span, .tinyHeading > span {
   display: block;
   transform: translateY(35%);
   opacity: 0;
 }
 
-.heading.animateMe > span {
+.heading.animateMe > span, .tinyHeading.animateMe > span {
   transition: transform var(--timing-long) ease-in, opacity var(--timing-long) ease-in;
   opacity: 1;
   transform: translateY(0);
@@ -484,4 +488,13 @@ body {
   height: 100%;
 
   transform: translateX(calc(100% * var(--slide-index, 0)));
+}
+
+.carouselSection .content {
+  max-width: var(--page-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: var(--space-gutter);
+  display: flex;
+  align-items: end;
 }
