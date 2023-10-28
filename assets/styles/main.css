@@ -1,13 +1,19 @@
 :root {
+  /* Brand colors */
+  --color-darkgreen: 15, 77, 65, 1;
+  --color-green: 179, 211, 53, 1;
+  --color-pink: 181, 159, 204, 1;
+
   --color1: 0, 0, 0;
   --color2: 100, 100, 100;
   --color3: 0, 0, 0;
   --color-font: 5, 5, 5;
-  --color-font-secondary: 255, 255, 255, 1;
-  --color-background: 244, 244, 237, 1;
-  --color-foreground: 177, 74, 237, 1;
-  --color-button: var(--color-font);
+  --color-font-secondary: 251, 251, 251, 1;
+  --color-background: 227, 226, 223, 1;
+  --color-foreground: var(--color-green);
+  --color-button: var(--color-pink);
   --color-button-secondary: var(--color-font-secondary);
+
   
   --page-width: 1440px;
   --space-floor: 10px;
@@ -20,6 +26,7 @@
 
   --box-shadow: rgba(5, 5, 5, 0.15) 0px 8px 24px;
 
+  /* Animation */
   --timing-long: 500ms;
   --timing-short: 300ms;
 }
@@ -36,7 +43,7 @@
 html {
   font-size: 16px;
   color: rgba(var(--color-font), 1);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Mulish', sans-serif;
 }
 
 @media screen and (max-width: 1023px) {
@@ -47,33 +54,46 @@ html {
 
 body {
   background-color: rgba(var(--color-background));
-  background-color: grey;
   position: relative;
 }
 
+.heading, .tinyHeading, #Menu a {
+  font-family: 'Playfair Display', serif;
+}
+
 .heading, .tinyHeading {
-  font-size: 4rem;
-  color: rgba(var(--color-font), 1);
-  font-family: 'Abril Fatface', serif;
+  font-size: 2.5rem;
+  color: inherit;
+
+  line-height: 1.2;
+  letter-spacing: 0.05em;
   font-weight: 700;
   display: block;
-  max-width: 12ch;
+  max-width: 18ch;
 }
 
-.tinyHeading {
-  font-size: 3rem;
+ @media (min-width: 1024px) {
+  .heading {
+    font-size: 4rem;
+  }
+
+  .tinyHeading {
+    font-size: 2.5rem;
+    margin-bottom: 0.15em;
+  }
 }
 
-.heading > span, .tinyHeading > span {
+
+.heading.animateMe > span, .tinyHeading.animateMe > span {
   display: block;
-  transform: translateY(35%);
+  transform: translateY(0.24em);
   opacity: 0;
 }
 
-.heading.animateMe > span, .tinyHeading.animateMe > span {
-  transition: transform var(--timing-long) ease-in, opacity var(--timing-long) ease-in;
-  opacity: 1;
+.heading.animateMe.animated > span, .tinyHeading.animateMe.animated > span {
+  transition: transform var(--timing-long) ease-in, opacity var(--timing-short) ease-in;
   transform: translateY(0);
+  opacity: 1;
 }
 
 .subheading {
@@ -94,7 +114,7 @@ body {
   width: 100%;
 }
 
-.framedBackground {
+.framedBackground, .frameOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -118,6 +138,10 @@ body {
   object-fit: cover;
 }
 
+.frameOverlay {
+  background-color: var(--overlay-color, rgba(var(--color-font), 0.45));
+}
+
 /* ------ */
 /* BUTTON */
 /* ------ */
@@ -133,15 +157,16 @@ body {
   margin-right: 0.25em;
 }
 
-[class*="Button"]:not(:only-child, .textButton)  {
-  margin-right: var(--space3);
+[class*="Button"][disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .uniqueButton {
   position: relative;
   font-size: 14px;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 1.2em 2.5em;
@@ -216,8 +241,8 @@ body {
 }
 
 .textButton {
-  display: block;
-  color: rgba(var(--color-button));
+  display: inline-block;
+  color: rgba(var(--color-font), 1);
   font-size: 14px;
   margin-top: 0.8em;
   margin-bottom: 0.8em;
@@ -234,7 +259,7 @@ body {
   content: "";
   position: absolute;
   display: block;
-  background-color: rgba(var(--color-button));
+  background-color: rgba(var(--color-font), 1);
   width: 100%;
   height: 1px;
   bottom: 0;
@@ -272,6 +297,27 @@ body {
   padding: var(--space-section) var(--space-gutter);
   min-height: 100vh;
   background-color: rgba(var(--color-background));
+}
+
+.sectionBorder {
+  position: relative;
+  margin-top: 20px;
+}
+
+.sectionBorder > .border {
+  background-color: rgba(var(--color-background));
+  color: rgba(var(--color-foreground));
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+
+.sectionBorder > .border > svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(180deg);
 }
 
 .fullSection > .oddBlock, .fullSection > .evenBlock {
@@ -368,14 +414,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  color: rgba(var(--color-background));
+  color: rgba(var(--color-foreground));
   opacity: 0;
 }
 
 #NavigationBackground > .background {
   width: 100%;
   height: calc(100% - 20px);
-  background-color: rgba(var(--color-background));
+  background-color: rgba(var(--color-foreground));
+  transition: background-color var(--timing-long) ease-in;
 }
 
 #NavigationBackground > svg {
@@ -383,6 +430,7 @@ body {
   width: 100%;
   height: 10px;
   display: block;
+  transition: color var(--timing-long) ease-in;
 }
 
 #NavigationContent {
@@ -390,7 +438,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px var(--space-gutter) 20px;
+  padding: 10px var(--space-gutter) 25px;
   max-width: var(--page-width);
   margin: 0 auto;
 }
@@ -438,6 +486,11 @@ body {
   width: 100%;
   position: relative;
   overflow: hidden;
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  align-items: end;
+  justify-content: center;
 }
 
 .carouselSection .slider {
@@ -449,14 +502,26 @@ body {
 }
 
 .carouselSection:not(.noTransition) .slider {
-  transition: transform 1s ease-in;
+  transition: transform 300ms ease-in;
+}
+
+.carouselControlsContainer {
+  position: relative;
+  width: 100%;
+  max-width: var(--page-width);
+  padding: var(--space-gutter);
+  display: flex;
+  justify-content: end;
+  pointer-events: none;
 }
 
 .carouselControls {
+  pointer-events: all;
   display: inline-flex;
   border-radius: 99px;
   align-items: center;
-  border: 2px rgba(var(--color-button)) solid;
+  border: 2px rgba(var(--color-button-secondary)) solid;
+  color: rgba(var(--color-button-secondary));
   padding: 5px;
 }
 
@@ -469,32 +534,142 @@ body {
   display: block;
   width: 20px;
   height: auto;
-  
 }
 
 .carouselControls .prevSlide:active svg, .carouselControls .nextSlide:active svg {
   transform: scale(0.9);
 }
 
-.carouselSection .content {
-  position: relative;
-}
-
+/* Slide */
 .slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  
   transform: translateX(calc(100% * var(--slide-index, 0)));
 }
 
-.carouselSection .content {
+.slideContent {
+  color: rgba(var(--color-font-secondary));
+  position: relative;
+  z-index: 1;
+  padding: var(--space-gutter) calc(var(--space-gutter) + 100px) var(--space-gutter) var(--space-gutter);
+  width: 100%;
   max-width: var(--page-width);
-  height: 100%;
-  margin: 0 auto;
-  padding: var(--space-gutter);
+}
+
+/* ---- */
+/* MENU */
+/* ---- */
+.activeMenu {
+  overflow: hidden;
+}
+
+.activeMenu #Navigation #NavigationBackground .background {
+  background-color: rgba(var(--color-foreground));
+}
+
+.activeMenu #Navigation #NavigationBackground svg {
+  color: rgba(var(--color-foreground));
+}
+
+.closeButtonContainer {
   display: flex;
-  align-items: end;
+  justify-content: end;
+  align-items: center;
+}
+
+#Menu {
+  pointer-events: none;
+  position: fixed;
+  top: -101%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--color-foreground));
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--timing-long) ease-in;
+}
+
+.activeMenu #Menu {
+  pointer-events: all;
+  transform: translateY(101%);
+}
+
+#Menu a {
+  color: inherit;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+#Menu a:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+#MenuButton {
+  font-weight: 700;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.menuButtonContent {
+  pointer-events: none;
+  position: relative;
+  transition: transform var(--timing-long) ease-in;
+}
+
+.activeMenu .menuButtonContent {
+  transform: translateY(100%);
+}
+
+.menuButtonFirstStage, .menuButtonSecondStage {
+  display: block;
+  text-align: center;
+}
+
+.menuButtonSecondStage {
+  transform: translateY(-100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  #MenuButton, #Menu {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  #NavigationContent .links {
+    display: none;
+  }
+}
+
+/* ------ */
+/* FOOTER */
+/* ------ */
+#Footer {
+  background-color: rgba(var(--color-foreground));
+  align-items: start;
+  padding-top: calc(var(--space-section) / 2);
+  padding-bottom: calc(var(--space-section) / 2);
+  min-height: unset;
+}
+
+#Footer .textButton {
+  font-size: 1.5rem;
+  margin: 0.5em 0 0.5em;
+  color: inherit;
+  text-decoration: none;
 }

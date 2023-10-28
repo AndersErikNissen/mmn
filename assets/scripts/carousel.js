@@ -36,7 +36,6 @@
 
       this.init = function() {
         this.node.addEventListener('move:slider', this.moveSlider.bind(this));
-        
       }.bind(this)();
     }
 
@@ -74,7 +73,11 @@
     moveSlider(e) {
       if (this.sliderIsActive) return;
       if (e.detail.buttonClick) this.resetTimer();
+
+      
       this.sliderIsActive = true;
+
+      this.node.classList.add('stillSlider');
       const placeSlider = (i, variableIndex = i) => this.slides[i].style.setProperty('--slide-index', variableIndex); 
       let indexLast = this.slides.length - 1;
       let index = this.index + e.detail.index;

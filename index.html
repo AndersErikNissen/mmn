@@ -15,8 +15,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 </head>
 <body class="hasIntroSection">
+  <div id="Menu">
+    <a href="/about.html">Om mig</a>
+    <a href="/cases.html">Projekter</a>
+    <a href="/visuals.html">Andet grafik</a>
+    <a href="/contact.html">Kontakt</a>
+  </div>
   <header id="Navigation">
     <div id="NavigationBackground">
       <div class="background"></div>
@@ -42,9 +50,15 @@
       </a>
       <div class="links">
         <a class="textButton" href="/about.html">Om mig</a>
-        <a class="textButton" href="/cases.html">Cases</a>
+        <a class="textButton" href="/cases.html">Projekter</a>
         <a class="textButton" href="/visuals.html">Andet grafik</a>
         <a class="textButton" href="/contact.html">Kontakt</a>
+      </div>
+      <div id="MenuButton">
+        <div class="menuButtonContent">
+          <span class="menuButtonFirstStage">MENU</span>
+          <span class="menuButtonSecondStage">LUK</span>
+        </div>
       </div>
     </div>
   </header>
@@ -52,7 +66,7 @@
   <section class="section introSection">
     <img src="/assets/media/usgs-hoS3dzgpHzw-unsplash.jpg" alt="" />
     <div class="singleBlock">
-      <h1 class="heading">Mette-Maries portfolio</h1>
+      <h1 class="heading animateMe"><span>Mette-Maries portfolio</span></h1>
       <div class="buttons">
         <a href="" class="uniqueButton">
           <div class="background">
@@ -85,7 +99,7 @@
 
   <section class="section">
     <div class="oddBlock">
-      <h2 class="heading"><span>Lidt om mig</span></h2>
+      <h2 class="heading animateMe"><span>Lidt om mig</span></h2>
       <p class="description">Mere om mig...</p>
       <div class="buttons">
         <a href="" class="uniqueButton">
@@ -123,132 +137,46 @@
     </div>
   </section>
 
-  <section class="carouselSection" id="CaseCarousel" style="--carousel-timing: 1000;--carousel-delay: 4000;">
+  <section class="carouselSection" id="CaseCarousel" style="--carousel-timing: 300;--carousel-delay: 4000;">
     <div class="slider">
-      <div class="slide" style="background-color: greenyellow"></div>
+      <div class="slide" style="background-color: greenyellow">
+        <img class="framedBackground" src="assets/media/projekter/profound-care.jpg" alt="" />
+        <div class="frameOverlay"></div>
+        <div class="slideContent">
+          <h3 class="heading animateMe"><span>For the fellows</span></h3>
+          <p class="description">Profound care</p>
+          <a href="" class="uniqueButton">
+            <div class="background">
+              <svg xmlns="http://www.w3.org/2000/svg" width="184" height="100" viewBox="0 0 184 100" fill="none" preserveAspectRatio="none" style="color: #D95525;">
+                <path xmlns="http://www.w3.org/2000/svg"
+                  transform="translate(2,4)"
+                  d="M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z" fill="currentColor"
+                >
+                  <animate 
+                    attributeName="d"
+                    dur="8s"
+                    calcMode="linear"
+                    values="
+                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z;
+                      M174 22.63C198.227 63.8157 144 86.6299 85.0002 92.6299C40.7694 97.128 -2.60156e-05 65.2214 0 43.13C1.94311e-05 26.6299 26.7885 11.7478 70.5 3.62982C105.5 -2.87025 159 -2.87018 174 22.63Z;
+                      M171.542 60.0186C149.019 102.16 133.542 75.5186 74.5423 81.5186C30.3115 86.0167 -1.31876 75.068 0.0422935 53.0186C2.54226 12.5186 49.0423 22.5186 86.0423 3.51859C117.709 -12.7429 187.042 31.0185 171.542 60.0186Z;
+                      M170 40.5001C194.227 81.6858 79.6215 104.441 22.5 88.5001C1.00005 82.5001 -7.50001 26.5001 11.4999 5.50015C25.9822 -10.5067 80.5 17 116.5 5.50008C150.41 -5.33227 154.999 14.9999 170 40.5001Z;
+                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z
+                    "
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </svg>
+            </div>
+            <span class="buttonLabel">Se projektet</span>
+          </a>
+        </div>
+      </div>
       <div class="slide" style="--slide-index: 1;background-color: goldenrod"></div>
       <div class="slide" style="--slide-index: 2;background-color: teal"></div>
       <div class="slide" style="--slide-index: -1;background-color: peachpuff"></div>
     </div>
-    <div class="content">
-      <div class="textContent">
-        <div data-slide-content="0">
-          <h2 class="tinyHeading"><span>Heading 1</span></h2>
-          <p class="slideMeta">Juli 2023</p>
-          <a href="" class="uniqueButton">
-            <div class="background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="184" height="100" viewBox="0 0 184 100" fill="none" preserveAspectRatio="none">
-                <path xmlns="http://www.w3.org/2000/svg"
-                  transform="translate(2,4)"
-                  d="M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z" fill="currentColor"
-                >
-                  <animate 
-                    attributeName="d"
-                    dur="8s"
-                    calcMode="linear"
-                    values="
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z;
-                      M174 22.63C198.227 63.8157 144 86.6299 85.0002 92.6299C40.7694 97.128 -2.60156e-05 65.2214 0 43.13C1.94311e-05 26.6299 26.7885 11.7478 70.5 3.62982C105.5 -2.87025 159 -2.87018 174 22.63Z;
-                      M171.542 60.0186C149.019 102.16 133.542 75.5186 74.5423 81.5186C30.3115 86.0167 -1.31876 75.068 0.0422935 53.0186C2.54226 12.5186 49.0423 22.5186 86.0423 3.51859C117.709 -12.7429 187.042 31.0185 171.542 60.0186Z;
-                      M170 40.5001C194.227 81.6858 79.6215 104.441 22.5 88.5001C1.00005 82.5001 -7.50001 26.5001 11.4999 5.50015C25.9822 -10.5067 80.5 17 116.5 5.50008C150.41 -5.33227 154.999 14.9999 170 40.5001Z;
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z
-                    "
-                    repeatCount="indefinite"
-                  />
-                </path>
-              </svg>
-            </div>
-            <span class="buttonLabel">Hent CV</span>
-          </a>
-        </div>
-        <div data-slide-content="1">
-          <h2 class="tinyHeading"><span>Heading 1</span></h2>
-          <p class="slideMeta">Juli 2023</p>
-          <a href="" class="uniqueButton">
-            <div class="background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="184" height="100" viewBox="0 0 184 100" fill="none" preserveAspectRatio="none">
-                <path xmlns="http://www.w3.org/2000/svg"
-                  transform="translate(2,4)"
-                  d="M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z" fill="currentColor"
-                >
-                  <animate 
-                    attributeName="d"
-                    dur="8s"
-                    calcMode="linear"
-                    values="
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z;
-                      M174 22.63C198.227 63.8157 144 86.6299 85.0002 92.6299C40.7694 97.128 -2.60156e-05 65.2214 0 43.13C1.94311e-05 26.6299 26.7885 11.7478 70.5 3.62982C105.5 -2.87025 159 -2.87018 174 22.63Z;
-                      M171.542 60.0186C149.019 102.16 133.542 75.5186 74.5423 81.5186C30.3115 86.0167 -1.31876 75.068 0.0422935 53.0186C2.54226 12.5186 49.0423 22.5186 86.0423 3.51859C117.709 -12.7429 187.042 31.0185 171.542 60.0186Z;
-                      M170 40.5001C194.227 81.6858 79.6215 104.441 22.5 88.5001C1.00005 82.5001 -7.50001 26.5001 11.4999 5.50015C25.9822 -10.5067 80.5 17 116.5 5.50008C150.41 -5.33227 154.999 14.9999 170 40.5001Z;
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z
-                    "
-                    repeatCount="indefinite"
-                  />
-                </path>
-              </svg>
-            </div>
-            <span class="buttonLabel">Hent CV</span>
-          </a>
-        </div>
-        <div data-slide-content="2">
-          <h2 class="tinyHeading"><span>Heading 1</span></h2>
-          <p class="slideMeta">Juli 2023</p>
-          <a href="" class="uniqueButton">
-            <div class="background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="184" height="100" viewBox="0 0 184 100" fill="none" preserveAspectRatio="none">
-                <path xmlns="http://www.w3.org/2000/svg"
-                  transform="translate(2,4)"
-                  d="M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z" fill="currentColor"
-                >
-                  <animate 
-                    attributeName="d"
-                    dur="8s"
-                    calcMode="linear"
-                    values="
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z;
-                      M174 22.63C198.227 63.8157 144 86.6299 85.0002 92.6299C40.7694 97.128 -2.60156e-05 65.2214 0 43.13C1.94311e-05 26.6299 26.7885 11.7478 70.5 3.62982C105.5 -2.87025 159 -2.87018 174 22.63Z;
-                      M171.542 60.0186C149.019 102.16 133.542 75.5186 74.5423 81.5186C30.3115 86.0167 -1.31876 75.068 0.0422935 53.0186C2.54226 12.5186 49.0423 22.5186 86.0423 3.51859C117.709 -12.7429 187.042 31.0185 171.542 60.0186Z;
-                      M170 40.5001C194.227 81.6858 79.6215 104.441 22.5 88.5001C1.00005 82.5001 -7.50001 26.5001 11.4999 5.50015C25.9822 -10.5067 80.5 17 116.5 5.50008C150.41 -5.33227 154.999 14.9999 170 40.5001Z;
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z
-                    "
-                    repeatCount="indefinite"
-                  />
-                </path>
-              </svg>
-            </div>
-            <span class="buttonLabel">Hent CV</span>
-          </a>
-        </div>
-        <div data-slide-content="3">
-          <h2 class="tinyHeading"><span>Heading 1</span></h2>
-          <p class="slideMeta">Juli 2023</p>
-          <a href="" class="uniqueButton">
-            <div class="background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="184" height="100" viewBox="0 0 184 100" fill="none" preserveAspectRatio="none">
-                <path xmlns="http://www.w3.org/2000/svg"
-                  transform="translate(2,4)"
-                  d="M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z" fill="currentColor"
-                >
-                  <animate 
-                    attributeName="d"
-                    dur="8s"
-                    calcMode="linear"
-                    values="
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z;
-                      M174 22.63C198.227 63.8157 144 86.6299 85.0002 92.6299C40.7694 97.128 -2.60156e-05 65.2214 0 43.13C1.94311e-05 26.6299 26.7885 11.7478 70.5 3.62982C105.5 -2.87025 159 -2.87018 174 22.63Z;
-                      M171.542 60.0186C149.019 102.16 133.542 75.5186 74.5423 81.5186C30.3115 86.0167 -1.31876 75.068 0.0422935 53.0186C2.54226 12.5186 49.0423 22.5186 86.0423 3.51859C117.709 -12.7429 187.042 31.0185 171.542 60.0186Z;
-                      M170 40.5001C194.227 81.6858 79.6215 104.441 22.5 88.5001C1.00005 82.5001 -7.50001 26.5001 11.4999 5.50015C25.9822 -10.5067 80.5 17 116.5 5.50008C150.41 -5.33227 154.999 14.9999 170 40.5001Z;
-                      M169 51C160.492 98.0193 45.0017 93.4999 19.4998 80.4999C2.93286 72.0546 -4.81694 49.966 3.5 29.5C10.002 13.5002 62.148 -15.8325 93.4998 11.5C113 28.5001 178.5 -1.50003 169 51Z
-                    "
-                    repeatCount="indefinite"
-                  />
-                </path>
-              </svg>
-            </div>
-            <span class="buttonLabel">Hent CV</span>
-          </a>
-        </div>
-      </div>
+    <div class="carouselControlsContainer">
       <div class="carouselControls">
         <div class="prevSlide">
           <svg xmlns="http://www.w3.org/2000/svg" width="42" height="36" viewBox="0 0 42 36" fill="none">
@@ -263,5 +191,35 @@
       </div>
     </div>
   </section>
+  <footer id="Footer" class="section sectionBorder">
+    <div class="border">
+      <svg xmlns="http://www.w3.org/2000/svg" width="435" height="26" viewBox="0 0 435 26" fill="none" preserveAspectRatio="none">
+        <path transform="scale(1.05)" d="M0 0V12C0 12 12 19.5898 20.5 21C32.1141 22.9269 37.8481 15.9828 46.5 13.5C53.2954 11.55 62.7806 19.7919 72 19.0827C91.5 17.5827 97.2101 25.8261 119.5 25C131.137 24.5687 135.5 22.0827 149 19.0827C162.5 16.0827 165.5 25 180.5 25C195.5 25 200.5 13.1655 214 19.0827C227.5 25 240.164 21.9817 252 21C272.238 19.3215 272.619 18.6374 292.5 14.5C310.233 10.8097 332 17 344.5 19.0827C358.303 21.3826 371.608 17.498 386 16C397.014 14.8536 406.825 21.1655 417.662 19.0827C428.5 17 434.5 12 434.5 12V0H0Z" fill="currentColor">
+          <animate 
+            attributename="d"
+            dur="2s"
+            calcMode="linear"
+            values="
+              M0 0V12C0 12 12 19.5898 20.5 21C32.1141 22.9269 37.8481 15.9828 46.5 13.5C53.2954 11.55 62.7806 19.7919 72 19.0827C91.5 17.5827 97.2101 25.8261 119.5 25C131.137 24.5687 135.5 22.0827 149 19.0827C162.5 16.0827 165.5 25 180.5 25C195.5 25 200.5 13.1655 214 19.0827C227.5 25 240.164 21.9817 252 21C272.238 19.3215 272.619 18.6374 292.5 14.5C310.233 10.8097 332 17 344.5 19.0827C358.303 21.3826 371.608 17.498 386 16C397.014 14.8536 406.825 21.1655 417.662 19.0827C428.5 17 434.5 12 434.5 12V0H0Z;
+              M0 0V12C0 12 12 13.0898 20.5 14.5C32.1141 16.4269 29 22 43 25C57 28 63.5 17.9173 74.5 14.5C85.5 11.0827 99 18.0189 113 17.5C124.637 17.0687 135 28 148.5 25C162 22 164.5 14.5 179.5 14.5C194.5 14.5 199 25 214.5 25C230 25 235.664 16.4817 247.5 15.5C267.738 13.8215 270.119 23.2201 290 19.0827C307.733 15.3924 341.5 10.4173 354 12.5C367.803 14.7999 375.608 24.498 390 23C401.014 21.8536 406.162 16.0827 417 14C427.838 11.9173 434.5 12 434.5 12V0H0Z;
+              M0 0V12C0 12 12 19.5898 20.5 21C32.1141 22.9269 37.8481 15.9828 46.5 13.5C53.2954 11.55 62.7806 19.7919 72 19.0827C91.5 17.5827 97.2101 25.8261 119.5 25C131.137 24.5687 135.5 22.0827 149 19.0827C162.5 16.0827 165.5 25 180.5 25C195.5 25 200.5 13.1655 214 19.0827C227.5 25 240.164 21.9817 252 21C272.238 19.3215 272.619 18.6374 292.5 14.5C310.233 10.8097 332 17 344.5 19.0827C358.303 21.3826 371.608 17.498 386 16C397.014 14.8536 406.825 21.1655 417.662 19.0827C428.5 17 434.5 12 434.5 12V0H0Z
+            "
+            repeatCount="indefinite"
+          />
+        </path>
+      </svg>
+    </div>
+    <div class="oddBlock">
+      <h2 class="tinyHeading animateMe"><span>Kom i kontakt</span></h2>
+      <a class="textButton" class="copyEmail" href="m&#97;il&#116;o&#58;nis&#37;&#55;&#51;&#101;&#110;0%&#51;108%&#52;0%68o%74m%61il&#46;com">Nis&#115;&#101;&#110;010&#56;&#64;hotma&#105;l&#46;com</a>
+    </div>
+    <div class="evenBlock">
+      <h2 class="tinyHeading animateMe"><span>Sociale medier</span></h2>
+      <ul>
+        <li><a class="textButton" href="#">LinkedIn</a></li>
+        <li><span class="textButton" disabled>Instagram (på vej)</span></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>
