@@ -1,8 +1,112 @@
-.introSection {
-  display: flex;
-  align-items:
+.hasIntroSection {
+  padding-top: 50vh;
 }
 
-.caseNeta {
+.caseMeta {
+  min-height: unset;
+  align-items: start;
+}
 
+.introSection {
+  padding: 0;
+  min-height: 50vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.introSection .logo {
+  width: auto;
+  height: 200px;
+  max-height: 80%;
+  position: relative;
+}
+
+.caseMeta li {
+  font-size: 1rem;
+}
+
+.caseMeta li:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.stickySection {
+  align-items: unset;
+}
+
+.stickySection .oddBlock > div {
+  position: sticky;
+  top: var(--navigation-height, 0);
+}
+
+.stickySection .evenBlock .frame:not(:last-child) {
+  margin-bottom: var(--space-gutter);
+}
+
+.nextCaseSection {
+  min-height: unset;
+  padding-top: 0;
+}
+
+.nextCaseSection .frameOverlay {
+  transition: opacity var(--timing-long) ease-in;
+}
+
+.nextCaseSection .framedBackground img, .nextCaseSection .arrowButton svg {
+  transition: transform var(--timing-long) ease-in;
+}
+
+.nextCaseSection .singleBlock:hover .framedBackground img {
+  transform: scale(1.05);
+}
+
+.nextCaseSection .singleBlock:hover .arrowButton svg {
+  transform: translateX(50%);
+}
+
+.nextCaseSection .singleBlock:hover .frameOverlay {
+  opacity: 0.75;
+}
+
+.nextCaseSection .singleBlock {
+  cursor: pointer;
+  overflow: hidden;
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+.nextCaseSection .blockContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nextCaseSection .arrowButton {
+  font-family: 'Playfair Display', serif;
+  color: rgba(var(--color-font-secondary));
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.nextCaseSection .arrowButton span {
+  display: block;
+  margin-right: var(--space3);
+}
+
+.nextCaseSection .arrowButton svg {
+  margin: 0;
+  width: 18px;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .nextCaseSection .arrowButton {
+    font-size: 2rem;
+  }
+
+  .nextCaseSection .arrowButton svg {
+    width: 25px;
+  }
 }

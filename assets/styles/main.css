@@ -14,7 +14,7 @@
   --color-button: var(--color-pink);
   --color-button-secondary: var(--color-font-secondary);
 
-  
+  --navigation-height: 87px;
   --page-width: 1440px;
   --space-floor: 10px;
   --space-section: calc(var(--space-floor) * 5);
@@ -82,7 +82,6 @@ body {
     margin-bottom: 0.15em;
   }
 }
-
 
 .heading.animateMe > span, .tinyHeading.animateMe > span {
   display: block;
@@ -291,6 +290,8 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 .section {
@@ -482,7 +483,7 @@ body {
 /* CAROUSEL */
 /* -------- */
 .carouselSection {
-  min-height: 100vh;
+  min-height: 65vh;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -491,6 +492,12 @@ body {
   display: flex;
   align-items: end;
   justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .carouselSection {
+    min-height: calc(100vh - var(--navigation-height));
+  }
 }
 
 .carouselSection .slider {
