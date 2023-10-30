@@ -3,12 +3,14 @@
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  perspective-origin: bottom right;
 }
 
 .parallaxGroup {
   position: relative;
   transform-style: preserve-3d;
   height: 100vh;
+  perspective-origin: bottom right;
 }
 
 .parallaxLayer {
@@ -17,23 +19,29 @@
   left: 0;
   right: 0;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .parallaxLayer > p {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
 }
 
 .parallaxLayer0 {
+  transform-origin: bottom right;
   transform: translateZ(0);
 }
 
 .parallaxLayer1 {
-  transform: translateZ(-1px) scale(2);
+  transform-origin: bottom right;
+  transform: translateZ(-0.5px) scale(1.5);
 }
 
 .parallaxLayer2 {
-  transform: translateZ(-2px) scale(3);
+  transform-origin: bottom right;
+  transform: translateZ(-1px) scale(2);
 }
