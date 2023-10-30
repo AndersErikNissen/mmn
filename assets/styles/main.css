@@ -59,6 +59,8 @@ body {
 
 .heading, .tinyHeading, #Menu a {
   font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-style: italic;
 }
 
 .heading, .tinyHeading {

@@ -11,6 +11,7 @@
   transform-style: preserve-3d;
   height: 100vh;
   perspective-origin: bottom right;
+  z-index: 10;
 }
 
 .parallaxLayer {
@@ -19,29 +20,74 @@
   left: 0;
   right: 0;
   bottom: 0;
+  transform-origin: bottom right;
+}
+
+.parallaxContent {
+  max-width: var(--page-width);
+  padding: 0 var(--space-gutter);
+}
+
+.parallaxLayer0 {
+  transform: translateZ(0);
+}
+
+.parallaxLayer1 {
+  transform: translateZ(-0.8px) scale(1.8);
+}
+
+.parallaxLayer2 {
+  transform: translateZ(-0.6px) scale(1.6);
+}
+
+.parallaxLayer3 {
+  transform: translateZ(-0.4px) scale(1.4);
+}
+
+.note {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  font-size: 1.1rem;
+  overflow: hidden;
+  padding: 7.5% 5% 5%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.parallaxLayer > p {
+.notePlacement0 {
+  top: 10%;
+  left: 10%;
+}
+
+.notePlacement1 {
+  bottom: 10%;
+  left: 40%;
+}
+
+.notePlacement2 {
+  bottom: 10%;
+  right: 10%;
+}
+
+.notePlacement3 {
+  bottom: 50%;
+  right: 35%;
+}
+
+.note p {
   /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%); */
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%; */
 }
 
-.parallaxLayer0 {
-  transform-origin: bottom right;
-  transform: translateZ(0);
-}
-
-.parallaxLayer1 {
-  transform-origin: bottom right;
-  transform: translateZ(-0.5px) scale(1.5);
-}
-
-.parallaxLayer2 {
-  transform-origin: bottom right;
-  transform: translateZ(-1px) scale(2);
+.note svg {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
 }
