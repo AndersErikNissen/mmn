@@ -424,8 +424,16 @@ body {
 #NavigationBackground > .background {
   width: 100%;
   height: calc(100% - 20px);
-  background-color: rgba(var(--color-foreground));
+  background-color: rgba(var(--color-background));
   transition: background-color var(--timing-long) ease-in;
+}
+
+.activeMenu #NavigationBackground {
+  color: rgba(var(--color-foreground));
+}
+
+.activeMenu #NavigationBackground > .background {
+  background-color: rgba(var(--color-foreground));
 }
 
 #NavigationBackground > svg {
