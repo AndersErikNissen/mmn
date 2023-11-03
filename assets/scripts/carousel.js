@@ -27,6 +27,8 @@
         this.node.dispatchEvent(new CustomEvent('move:slider', { detail: { index: 1}}));
       }, this.delay);
 
+      this.position = 0;
+
       this.buttons = function() {
         let allButtonNodes = node.querySelectorAll('.prevSlide, .nextSlide');
         let allButtons = [];
@@ -37,27 +39,6 @@
       this.init = function() {
         this.node.addEventListener('move:slider', this.moveSlider.bind(this));
       }.bind(this)();
-    }
-
-    timer() {
-      const callback = () => {
-        console.warn("callback")
-        ;
-      };
-
-      let interval = setInterval(callback, this.delay + this.timing);
-
-      return {
-        reset: function() {
-          if (interval) {
-            console.log("resetting")
-            clearInterval(interval);
-            setTimeout(() => {
-              interval = setInterval(callback, this.delay);
-            }, this.timing);
-          }
-        }.bind(this),
-      };
     }
 
     resetTimer() {
@@ -71,60 +52,92 @@
     }
 
     moveSlider(e) {
-      if (this.sliderIsActive) return;
-      if (e.detail.buttonClick) this.resetTimer();
-
+      let startTime, previousTimeStamp, done;
+      const animationTime = 500;
       
-      this.sliderIsActive = true;
+      const animate = (timeStamp) => {
+        if (startTime === undefined) startTime = timeStamp;
 
-      this.node.classList.add('stillSlider');
-      const placeSlider = (i, variableIndex = i) => this.slides[i].style.setProperty('--slide-index', variableIndex); 
-      let indexLast = this.slides.length - 1;
-      let index = this.index + e.detail.index;
-      if (index === indexLast) placeSlider(indexLast);
-      if (index === 0) placeSlider(0);
-      if (index > indexLast) {
-        placeSlider(0, indexLast + 1);
-        this.slider.style.transform = `translateX(${-100 * index}%)`; 
-        setTimeout(() => {
-          this.node.classList.add('noTransition');
-          this.slider.style.transform = 'translateX(0%)';
-          placeSlider(0);
-          this.node.offsetHeight;
-          this.node.classList.remove('noTransition');
-          placeSlider(indexLast, -1);
+        const elapsed = timeStamp - startTime;
 
-          this.sliderIsActive = false;
-        }, this.timing);
-        
-        this.index = 0;
-        return;
+        if (previousTimeStamp !== timeStamp) {
+          const count = Math.min((100 / animationTime) * elapsed, 100);
+          this.slider.style.transform = `translateX(${this.position - count}%)`;
+          if (count === 100) {
+            done = true;
+            this.position = this.position - count;
+          };
+        }
+
+        if (elapsed < animationTime) {
+          previousTimeStamp = timeStamp;
+
+          if (!done) {
+            requestAnimationFrame(animate);
+          }
+        }
       };
+
+      requestAnimationFrame(animate);
+
       
-      if (index < 0) {
-        placeSlider(indexLast, -1);
-        this.slider.style.transform = `translateX(${-100 * index}%)`;
-        setTimeout(() => {
-          this.node.classList.add('noTransition');
-          this.slider.style.transform = `translateX(${-100 * indexLast}%)`;
-          placeSlider(indexLast);
-          this.node.offsetHeight;
-          this.node.classList.remove('noTransition');
-          placeSlider(0, indexLast + 1);
+
+      // if (this.sliderIsActive) return;
+      // if (e.detail.buttonClick) this.resetTimer();
+      // this.sliderIsActive = true;
+      
+      
+      // this.sliderIsActive = false;
+
+      // // OLD STUFF
+      // this.node.classList.add('stillSlider');
+      // const placeSlider = (i, variableIndex = i) => this.slides[i].style.setProperty('--slide-index', variableIndex); 
+      // let indexLast = this.slides.length - 1;
+      // let index = this.index + e.detail.index;
+      // if (index === indexLast) placeSlider(indexLast);
+      // if (index === 0) placeSlider(0);
+      // if (index > indexLast) {
+      //   placeSlider(0, indexLast + 1);
+      //   this.slider.style.transform = `translateX(${-100 * index}%)`; 
+      //   setTimeout(() => {
+      //     this.node.classList.add('noTransition');
+      //     this.slider.style.transform = 'translateX(0%)';
+      //     placeSlider(0);
+      //     this.node.offsetHeight;
+      //     this.node.classList.remove('noTransition');
+      //     placeSlider(indexLast, -1);
+
+      //     this.sliderIsActive = false;
+      //   }, this.timing);
+        
+      //   this.index = 0;
+      //   return;
+      // };
+      
+      // if (index < 0) {
+      //   placeSlider(indexLast, -1);
+      //   this.slider.style.transform = `translateX(${-100 * index}%)`;
+      //   setTimeout(() => {
+      //     this.node.classList.add('noTransition');
+      //     this.slider.style.transform = `translateX(${-100 * indexLast}%)`;
+      //     placeSlider(indexLast);
+      //     this.node.offsetHeight;
+      //     this.node.classList.remove('noTransition');
+      //     placeSlider(0, indexLast + 1);
           
-          this.sliderIsActive = false;
-        }, this.timing);
+      //     this.sliderIsActive = false;
+      //   }, this.timing);
 
-        this.index = indexLast;
+      //   this.index = indexLast;
 
-        return;
-      }
+      //   return;
+      // }
 
-      this.slider.style.transform = `translateX(${-100 * index}%)`; 
-      setTimeout(() => {
-        this.index = index;
-        this.sliderIsActive = false;
-      }, this.timing);
+      // this.slider.style.transform = `translateX(${-100 * index}%)`; 
+      // setTimeout(() => {
+      //   this.index = index;
+      //   this.sliderIsActive = false;
+      // }, this.timing);
     }
   }
 

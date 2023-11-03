@@ -518,9 +518,9 @@ body {
   height: 100%;
 }
 
-.carouselSection:not(.noTransition) .slider {
+/* .carouselSection:not(.noTransition) .slider {
   transition: transform 300ms ease-in;
-}
+} */
 
 .carouselControlsContainer {
   position: relative;
@@ -568,7 +568,7 @@ body {
   justify-content: center;
   align-items: end;
   
-  transform: translateX(calc(100% * var(--slide-index, 0)));
+  /* transform: translateX(calc(100% * var(--slide-index, 0))); */
 }
 
 .slideContent {
