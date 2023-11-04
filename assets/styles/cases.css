@@ -1,28 +1,4 @@
 .headerSection {
   min-height: unset;
-}
-
-.casesSection {
-  padding-top: 0;
   padding-bottom: 0;
-}
-
-.casesSection .blockContent .frame {
-  overflow: hidden;
-}
-
-.casesSection .blockContent .frame img {
-  transition: transform var(--timing-long) ease-in;
-}
-
-.casesSection .blockContent:hover .frame img {
-  transform: scale(1.05);
-}
-
-.linkOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
