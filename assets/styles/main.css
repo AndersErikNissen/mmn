@@ -15,7 +15,7 @@
   --color-button-secondary: var(--color-font-secondary);
 
   --navigation-height: 87px;
-  --page-width: 1440px;
+  --page-width: 1200px;
   --space-floor: 10px;
   --space-section: calc(var(--space-floor) * 5);
   --space-block: calc(var(--space-floor) * 1);
@@ -44,6 +44,7 @@ html {
   font-size: 16px;
   color: rgba(var(--color-font), 1);
   font-family: 'Mulish', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 @media screen and (max-width: 1023px) {
@@ -58,20 +59,14 @@ body {
 }
 
 .heading, .tinyHeading, #Menu a {
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  font-style: italic;
+  font-family: 'Sulphur Point', sans-serif;
 }
 
 .heading, .tinyHeading {
   font-size: 2.5rem;
   color: inherit;
-
-  line-height: 1.2;
-  letter-spacing: 0.05em;
-  font-weight: 700;
   display: block;
-  max-width: 18ch;
+  max-width: 22ch;
 }
 
  @media (min-width: 1024px) {
@@ -103,7 +98,8 @@ body {
 }
 
 .description {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  max-width: 65ch;
 }
 
 .subheading, .heading, .description {
@@ -147,7 +143,7 @@ body {
 /* BUTTON */
 /* ------ */
 .buttons {
-  margin-top: var(--space1);
+  margin-top: var(--space2);
   display: flex;
   align-items: center;
 }
@@ -417,7 +413,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  color: rgba(var(--color-foreground));
+  color: rgba(var(--color-background));
   opacity: 0;
 }
 
@@ -478,7 +474,7 @@ body {
 
 #Logo {
   flex: 0 0 90px;
-  color: inherit;
+  color: var(--color-darkgreen);
   height: auto;
   display: block;
   transition: flex var(--timing-short) ease-in;
@@ -719,4 +715,31 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+  color: rgba(var(--color-font-secondary));
+  line-height: 1.2;
+}
+
+.introSection > img {
+  width: calc(100% - (var(--space-gutter) * 2));
+  height: calc(100% - (var(--space-gutter) * 2));
+  top: var(--space-gutter);
+  left: var(--space-gutter);
+}
+
+.introSection .heading {
+  max-width: unset;
+}
+
+/* --------- */
+/* CASE GRID */
+/* --------- */
+.casesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  height: 200vh;
+}
+
+.gridItem {
+  position: relative;
 }
