@@ -142,7 +142,7 @@ body {
 }
 
 .frameOverlay {
-  background-color: var(--overlay-color, rgba(var(--color-font), 0.25));
+  background-color: var(--overlay-color, rgba(var(--color-font), 0.45));
 }
 
 /* ------ */
@@ -741,8 +741,6 @@ body {
   min-width: 100%;
   min-height: 100%;
 }
-
-
 
 /* ----- */
 /* INTRO */

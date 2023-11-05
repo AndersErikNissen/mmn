@@ -175,8 +175,8 @@
 @media (min-width: 1450px) {
   .note {
     font-size: 1.2rem;
-    width: 14em;
-    height: 14em;
+    width: 15em;
+    height: 15em;
   }
 
   .parallaxLayer2 .note:nth-child(1) {

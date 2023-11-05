@@ -1,3 +1,7 @@
+#Logo svg {
+  fill: var(--color-logo, inherit);
+}
+
 .hasIntroSection {
   padding-top: 50vh;
 }
@@ -10,15 +14,20 @@
 .introSection {
   padding: 0;
   height: 50vh;
+  display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--intro-background, transparent);
 }
 
-.introSection .logo {
-  width: auto;
-  height: 200px;
-  max-height: 80%;
-  position: relative;
+.introSection .caseLogo {
+  width: var(--case-logo-width, 400px);
+  height: auto;
+}
+
+.introSection .caseLogo > svg {
+  width: 100%;
+  height: auto;
 }
 
 .caseMeta li {
