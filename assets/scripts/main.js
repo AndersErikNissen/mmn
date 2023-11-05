@@ -61,3 +61,15 @@
 
   window.addEventListener('scroll', handleScroll);
 })();
+
+// Contact modal
+(function() {
+  const contactModal = document.querySelector('.contactModal');
+  const toggleModalButtons = document.querySelectorAll('.toggleContactModal');
+
+  contactModal.addEventListener('click', (e) => e.target == contactModal ? document.body.classList.remove('activeContactModal') : null)
+
+  toggleModalButtons.forEach(btn => {
+    btn.addEventListener('click', () => document.body.classList.toggle('activeContactModal'));
+  });
+})();

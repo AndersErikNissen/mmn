@@ -7,10 +7,10 @@
   --color1: 0, 0, 0;
   --color2: 100, 100, 100;
   --color3: 0, 0, 0;
-  --color-font: 5, 5, 5;
-  --color-font-secondary: 251, 251, 251, 1;
   --color-background: 227, 226, 223, 1;
   --color-foreground: var(--color-pink);
+  --color-font: 5, 5, 5;
+  --color-font-secondary: var(--color-background);
   --color-button: var(--color-pink);
   --color-button-secondary: var(--color-font-secondary);
 
@@ -819,8 +819,8 @@ body {
   padding: var(--space3);
 }
 
-.gridItem svg {
-  width: 200px;
+.gridItem .icon {
+  max-width: 200px;
   height: auto;
   position: absolute;
   top: 50%;
@@ -884,8 +884,78 @@ body {
     height: 200vh;
   }
   
-  
   .gridItemContent .tinyHeading {
     font-size: 2rem;
   }
+}
+
+/* ------------- */
+/* CONTACT MODAL */
+/* ------------- */
+.contactModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: rgba(181, 159, 204, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 100;
+  padding: var(--space-gutter);
+}
+
+.contactModal .toggleContactModal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: var(--space3) 0;
+  cursor: pointer;
+}
+
+.contactModal .contactLinks .textButton {
+  color: inherit;
+  font-size: 1.2rem;
+}
+
+@media (min-width: 1024px) {
+  .contactModal .contactLinks .textButton {
+    font-size: 2rem;
+  }
+}
+
+.contactModal .textButton {
+  color: inherit;
+}
+
+.contactModal .textButton::before {
+  background-color: rgba(var(--color-background));
+}
+
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactModalContent {
+  color: rgba(var(--color-font-secondary));
+  background-color: rgba(var(--color-foreground));
+  transform: translateY(30%);
+  opacity: 0;
+  padding: var(--space-gutter);
+  border-radius: var(--border-radius);
+}
+
+.activeContactModal .contactModal, .activeContactModal .contactModalContent {
+  pointer-events: all;
+  opacity: 1;
+  transition: opacity var(--timing-long) ease-in, transform var(--timing-long) ease-in;
+}
+
+.activeContactModal .contactModalContent {
+  transform: translateY(0%);
 }
