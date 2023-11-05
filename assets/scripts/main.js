@@ -44,11 +44,14 @@
   const topNavigation = document.querySelector('#Navigation');
   let scrollAmount = 0;
   let hasScrolled = false;
+  let scrollWindow = document.querySelector('.parallax') || window;
+  if (window.innerWidth < 1024) scrollWindow = window;
   
   const handleScroll = (e) => {
+    console.log("scroll")
     if (scrollAmount >= 1) {
       if (hasScrolled) {
-        window.removeEventListener('scroll', handleScroll);
+        scrollWindow.removeEventListener('scroll', handleScroll);
       } else {
         topNavigation.classList.add('animateMe');
         hasScrolled = true;
@@ -59,7 +62,7 @@
     scrollAmount++;
   }
 
-  window.addEventListener('scroll', handleScroll);
+  scrollWindow.addEventListener('scroll', handleScroll);
 })();
 
 // Contact modal

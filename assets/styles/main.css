@@ -68,6 +68,7 @@ body {
   color: inherit;
   display: block;
   max-width: 22ch;
+  line-height: 1.2;
 }
 
  @media (min-width: 1024px) {
@@ -101,6 +102,10 @@ body {
 .description {
   font-size: 1.1rem;
   max-width: 65ch;
+}
+
+.description + .description {
+  margin-top: var(--space-gutter);
 }
 
 .subheading, .heading, .description {
@@ -340,6 +345,11 @@ body {
 .blockContent {
   position: relative;
   z-index: 1;
+}
+
+.textHeavySection {
+  align-items: start;
+  background-color: rgba(var(--color-pink));
 }
 
 @media screen and (max-width: 1023px) {
@@ -688,6 +698,8 @@ body {
   position: relative;
   overflow: hidden;
   min-height: unset;
+  background-color: rgba(var(--color-darkgreen));
+  color: rgba(var(--color-background));
 }
 
 #Footer .tinyHeading {
@@ -863,7 +875,6 @@ body {
   .gridItem {
     flex: 0 1 100%;
     height: 300px;
-
   }
 
   .gridItem:not(:last-child) {

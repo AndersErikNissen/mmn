@@ -9,7 +9,7 @@
 
 .introSection {
   padding: 0;
-  min-height: 50vh;
+  height: 50vh;
   justify-content: center;
   align-items: center;
 }

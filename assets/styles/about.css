@@ -1,4 +1,44 @@
+#Navigation {
+  position: sticky;
+}
+
+.note svg {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+
+.parallaxLayer0 .note:nth-child(1) {
+  color: rgb(58, 102, 38);
+}
+
+.parallaxLayer0 .note:nth-child(3) {
+  color: rgb(133, 146, 33);
+}
+
+.parallaxLayer0 .note:nth-child(4) {
+  color: rgb(150, 30, 50);
+}
+
+.parallaxLayer1 .note:nth-child(1) {
+  color: rgb(70, 42, 108);
+}
+
+.parallaxLayer2 .note:nth-child(1) {
+  color: rgb(42, 100, 108);
+}
+
 @media (max-width: 1023px) {
+  .parallaxGroup > .tinyHeading {
+    text-align: center;
+    margin-bottom: var(--space-gutter);
+  }
+  .parallaxLayer0 .tinyHeading {
+    display: none;
+  }
+
   .parallaxGroup {
     padding: var(--space-section) var(--space-gutter);
   }
@@ -9,6 +49,7 @@
   }
   
   .note {
+    font-family: 'Agbalumo', serif;
     position: relative;
     padding-top: 100%;
     font-size: 1.4em;
@@ -30,6 +71,10 @@
 }
 
 @media (min-width: 1024px) {
+  .parallaxGroup > .tinyHeading {
+    display: none;
+  }
+
   .parallax {
     perspective: 1px;
     height: 100vh;
@@ -53,6 +98,9 @@
     right: 0;
     bottom: 0;
     transform-origin: bottom right;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
   }
   
   .parallaxContent {
@@ -77,10 +125,11 @@
   }
   
   .note {
-    font-size: 1.1rem;
+    font-family: 'Agbalumo', serif;
+    font-size: 0.7rem;
     position: absolute;
-    width: 14em;
-    height: 14em;
+    width: 16em;
+    height: 16em;
     overflow: hidden;
     padding: 5.5% 4% 4%;
     display: flex;
@@ -92,30 +141,46 @@
     transform: translate(-50%,-50%);
   }
   
-  .parallaxLayer:nth-child(1) .note {
-    left: calc(50% + 9em);
+  .parallaxLayer0 .note:nth-child(1) {
+    top: calc(50% - 220px);
+    left: calc(50% - 150px);
+  }
+
+  .parallaxLayer0 .note:nth-child(3) {
+    top: calc(50% + 240px);
+    left: calc(50% + 250px);
   }
   
-  .parallaxLayer:nth-child(2) .note {
-    top: 65%;
-    left: calc(50% - 6em);
+  .parallaxLayer0 .note:nth-child(4) {
+    top: calc(50% + 190px);
+    left: calc(50% - 100px);
   }
   
-  .parallaxLayer:nth-child(3) .note:nth-child(1) {
-    top: 55%;
-    left: calc(50% + 28em);
+  .parallaxLayer1 .note:nth-child(1) {
+    top: calc(50% - 50px);
+    left: calc(50% - 430px);
   }
   
-  .parallaxLayer:nth-child(3) .note:nth-child(2) {
-    top: 40%;
-    left: calc(50% - 20em);
-  }  
+  .parallaxLayer2 .note:nth-child(1) {
+    top: 50%;
+    left: calc(50% + 400px);
+  }
+
+  .parallax .tinyHeading {
+    max-width: unset;
+    font-size: 2rem;
+  }
 }
 
-.note svg {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
+@media (min-width: 1450px) {
+  .note {
+    font-size: 1.2rem;
+    width: 14em;
+    height: 14em;
+  }
+
+  .parallaxLayer2 .note:nth-child(1) {
+    top: 50%;
+    left: calc(50% + 500px);
+  }
 }

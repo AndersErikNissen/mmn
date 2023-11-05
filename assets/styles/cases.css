@@ -1,4 +1,5 @@
 .headerSection {
+  padding-top: calc(var(--space-section) * 2);
   min-height: unset;
   padding-bottom: 0;
 }
