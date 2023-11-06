@@ -785,8 +785,8 @@ body {
 @media (min-width: 1024px) {
   .introSection > img {
     width: calc(100% - (var(--space-gutter) * 2));
-    height: calc(100% - (var(--space-gutter) * 2));
-    top: var(--space-gutter);
+    height: calc(100% - (var(--space-section) * 2));
+    top: var(--space-section);
     left: var(--space-gutter);
     border-radius: var(--border-radius);
   }

@@ -25,7 +25,7 @@
   height: auto;
 }
 
-.introSection .caseLogo > svg {
+.introSection .caseLogo > svg, .introSection .caseLogo > img {
   width: 100%;
   height: auto;
 }
