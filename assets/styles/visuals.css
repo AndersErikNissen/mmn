@@ -37,7 +37,6 @@
 
 .visualFrame:hover img {
   transform: scale(1.05) translate(-47.5%, -47.5%);
-  
 }
 
 .visualItem, .visualFrame, .fullVisualItem {
@@ -47,8 +46,8 @@
 
 @media (min-width: 1024px) {
   .visualItem, .visualFrame {
-    flex: 0 0 33%;
-    padding-top: 33%;
+    flex: 0 0 50%;
+    padding-top: 50%;
   }
 }
 

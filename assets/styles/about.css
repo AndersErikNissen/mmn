@@ -1,3 +1,32 @@
+.aboutImage {
+  position: relative;
+}
+
+.aboutImage .frame img {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.textHeavySection {
+  align-items: center;
+}
+
+.textHeavySection .tinyHeading {
+  margin-top: var(--space3);
+}
+
+.aboutBottomIllustration .cls-1{
+  fill: rgba(var(--color-pink));
+}
+
+.mojnIcon {
+  position: absolute;
+  bottom: 100px;
+  left: -30px;
+  width: 200px;
+  height: auto;
+}
+
 #Navigation {
   position: sticky;
 }
@@ -11,23 +40,23 @@
 }
 
 .parallaxLayer0 .note:nth-child(1) {
-  color: rgb(58, 102, 38);
+  color: rgba(var(--color-pink));
 }
 
 .parallaxLayer0 .note:nth-child(3) {
-  color: rgb(133, 146, 33);
+  color: rgba(var(--color-pink));
 }
 
 .parallaxLayer0 .note:nth-child(4) {
-  color: rgb(150, 30, 50);
+  color: rgba(var(--color-darkgreen));
 }
 
 .parallaxLayer1 .note:nth-child(1) {
-  color: rgb(70, 42, 108);
+  color: rgba(var(--color-darkgreen));
 }
 
 .parallaxLayer2 .note:nth-child(1) {
-  color: rgb(42, 100, 108);
+  color: rgba(var(--color-darkgreen));
 }
 
 @media (max-width: 1023px) {
@@ -49,7 +78,7 @@
   }
   
   .note {
-    font-family: 'Agbalumo', serif;
+    font-family: 'Sulphur Point', sans-serif;
     position: relative;
     padding-top: 100%;
     font-size: 1.4em;
@@ -125,7 +154,7 @@
   }
   
   .note {
-    font-family: 'Agbalumo', serif;
+    font-family: 'Sulphur Point', sans-serif;
     font-size: 0.7rem;
     position: absolute;
     width: 16em;

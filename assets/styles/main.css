@@ -7,7 +7,7 @@
   --color1: 0, 0, 0;
   --color2: 100, 100, 100;
   --color3: 0, 0, 0;
-  --color-background: 227, 226, 223, 1;
+  --color-background: 253, 246, 240, 1;
   --color-foreground: var(--color-pink);
   --color-font: 5, 5, 5;
   --color-font-secondary: var(--color-background);
@@ -44,7 +44,6 @@
 html {
   font-size: 16px;
   color: rgba(var(--color-font), 1);
-  font-family: 'Mulish', sans-serif;
   font-family: 'Work Sans', sans-serif;
 }
 
@@ -101,6 +100,7 @@ body {
 
 .description {
   font-size: 1.1rem;
+  line-height: 1.6;
   max-width: 65ch;
 }
 
@@ -473,6 +473,7 @@ body {
 
 #NavigationContent .textButton {
   margin: 0;
+  font-size: 1rem;
   padding: 0.2em 0;
 }
 

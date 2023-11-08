@@ -29,9 +29,9 @@
 
 @media (min-width: 1024px) {
   .visualRolette {
-    flex: 0 0 33.33%;
-    width: 33.33%;
-    padding-top: 33.33%;
+    flex: 0 0 50%;
+    width: 50%;
+    padding-top: 50%;
   }
 }
 

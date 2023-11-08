@@ -54,6 +54,7 @@
 .nextCaseSection {
   min-height: unset;
   padding-top: 0;
+  position: relative;
 }
 
 .nextCaseSection .frameOverlay {
@@ -90,7 +91,7 @@
 }
 
 .nextCaseSection .arrowButton {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Sulphur Point', sans-serif;
   color: rgba(var(--color-font-secondary));
   font-size: 1.5rem;
   display: flex;
