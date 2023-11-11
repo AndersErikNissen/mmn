@@ -210,7 +210,7 @@ body {
 }
 
 .filledButton, .outlinedButton, .textButton {
-  display: block;
+  display: inline-block;
   cursor: pointer;
   font-size: 14px;
   transition: 
@@ -918,17 +918,10 @@ body {
   padding: var(--space-gutter);
 }
 
-.contactModal .toggleContactModal {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: var(--space3) 0;
-  cursor: pointer;
-}
-
 .contactModal .contactLinks .textButton {
   color: inherit;
   font-size: 1.2rem;
+  margin: 0;
 }
 
 @media (min-width: 1024px) {
@@ -941,19 +934,14 @@ body {
   color: inherit;
 }
 
-.contactModal .textButton::before {
-  background-color: rgba(var(--color-background));
-}
-
 .contactLinks {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
 }
 
 .contactModalContent {
-  color: rgba(var(--color-font-secondary));
-  background-color: rgba(var(--color-foreground));
+  background-color: rgba(var(--color-background));
   transform: translateY(30%);
   opacity: 0;
   padding: var(--space-gutter);
@@ -968,4 +956,12 @@ body {
 
 .activeContactModal .contactModalContent {
   transform: translateY(0%);
+}
+
+.contactLinkGroup:nth-child(odd) {
+  padding-bottom: var(--space3);
+}
+
+.contactLinkGroup:nth-child(even) {
+  padding: var(--space3) 0;
 }
