@@ -61,6 +61,12 @@
   transition: opacity var(--timing-long) ease-in;
 }
 
+.nextCaseSection .framedBackground,
+.nextCaseSection .frameOverlay {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
 .nextCaseSection .framedBackground img, .nextCaseSection .arrowButton svg {
   transition: transform var(--timing-long) ease-in;
 }

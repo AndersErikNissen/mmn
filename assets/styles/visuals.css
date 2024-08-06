@@ -56,39 +56,14 @@
 /* -------- */
 .visualCarousel {
   width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding-top: 50vh;
 }
 
-.visualCarousel > div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  min-width: 100%;
-  height: 100%;
-}
-
-.visualCarousel > div > div {
-  flex: 0 0 auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  animation: infiCarousel 40s infinite linear;
-}
-
-.visualCarousel > div:hover > div {
-  animation-play-state: paused;
+.visualCarousel .aen-item {
+  width: 400px;
 }
 
 .visualCarousel img {
-  width: auto;
-  height: calc(100% - (var(--space-gutter) * 2));
-  margin-right: var(--space-gutter)
-}
-
-@keyframes infiCarousel {
-  from { transform: translateX(0%) }
-  to { transform: translateX(-100%) }
+  display: block;
+  width: 100%;
+  height: auto;
 }

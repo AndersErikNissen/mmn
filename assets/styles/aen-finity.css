@@ -1,0 +1,30 @@
+aen-finity-start,
+aen-finity-end {
+  display: flex;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+aen-finity-start { justify-content: flex-start; }
+aen-finity-end   { justify-content: flex-end; }
+
+[state="running"] .aen-finity__wrapper,
+[state="paused"] .aen-finity__wrapper {
+  opacity: 1;
+}
+
+.aen-finity__wrapper {
+  opacity: 0;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+
+.aen-finity__item {
+  flex: 0 0 auto;
+  display: block;
+}
+
+aen-finity-start .aen-finity__item { padding-right: 68px; }
+aen-finity-end .aen-finity__item   { padding-left: 68px; }

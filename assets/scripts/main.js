@@ -48,7 +48,6 @@
   if (window.innerWidth < 1024) scrollWindow = window;
   
   const handleScroll = (e) => {
-    console.log("scroll")
     if (scrollAmount >= 1) {
       if (hasScrolled) {
         scrollWindow.removeEventListener('scroll', handleScroll);
@@ -76,3 +75,4 @@
     btn.addEventListener('click', () => document.body.classList.toggle('activeContactModal'));
   });
 })();
+

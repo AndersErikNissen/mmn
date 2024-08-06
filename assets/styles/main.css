@@ -56,6 +56,8 @@ html {
 body {
   background-color: rgba(var(--color-background));
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .heading, .tinyHeading, #Menu a {
@@ -115,6 +117,9 @@ body {
 .frame {
   position: relative;
   width: 100%;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
 }
 
 .framedBackground, .frameOverlay, .linkOverlay {

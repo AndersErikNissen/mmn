@@ -2,9 +2,10 @@
   position: relative;
 }
 
-.aboutImage .frame img {
+.aboutImage .frame {
+  width: 80%;
   border-radius: 50%;
-  overflow: hidden;
+  margin: 0 auto;
 }
 
 .textHeavySection {
