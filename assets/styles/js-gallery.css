@@ -1,0 +1,78 @@
+.gallery-wrapper {
+  --gallery-color: 0,0,0;
+}
+
+[data-show-on-state] {
+  display: none;
+}
+
+[data-gallery-state="play"] [data-show-on-state="play"],
+[data-gallery-state="pause"] [data-show-on-state="pause"] {
+  display: block;
+}
+
+.gallery-wrapper .frame::before {
+  padding-bottom: 56.5%;
+}
+
+.gallery-state-btn {
+  align-items: center;
+  background-color: rgba(var(--gallery-color), 1);
+  bottom: 40px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  position: absolute;
+  right: 40px;
+  width: 40px;
+}
+
+.gallery-state-icon {
+  width: 16px;
+}
+
+.gallery-state-icon--play {
+  transform: translateX(9%);
+}
+
+.gallery-state-icon--pause {
+  width: 14px;
+}
+
+.gallery-state-btn svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gallery-radio__btns {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 10px 0 0;
+}
+
+.gallery-radio__btns .radio-btn {
+  height: 10px;
+  flex: 1 1 100%;
+  border-radius: 2px;
+  background-color: rgba(var(--gallery-color), 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-radio__btns .radio-btn::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  background-color: rgba(var(--gallery-color), 1);
+}
+
+.gallery-radio__btns .radio-btn.animating::before {
+  transform: translateX(0);
+  transition: transform 5s linear;
+}
