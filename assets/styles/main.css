@@ -1,21 +1,21 @@
 :root {
   /* Brand colors */
-  --color-darkgreen: 15, 77, 65, 1;
-  --color-green: 179, 211, 53, 1;
-  --color-pink: 181, 159, 204, 1;
+  --color-purple: #9f8ee1;
+  --color-purple-bg: rgba(159,142,225,0.5);
+  --color-grey: #252525;
 
   --color1: 0, 0, 0;
   --color2: 100, 100, 100;
   --color3: 0, 0, 0;
-  --color-background: 253, 246, 240, 1;
+  --color-background: 255, 255, 255, 1;
   --color-foreground: var(--color-pink);
   --color-font: 5, 5, 5;
   --color-font-secondary: var(--color-background);
-  --color-button: var(--color-pink);
+  --color-button: var(--color-purple);
   --color-button-secondary: var(--color-font-secondary);
 
   --navigation-height: 87px;
-  --page-width: 1200px;
+  --page-width: 1440px;
   --space-floor: 10px;
   --space-section: calc(var(--space-floor) * 5);
   --space-block: calc(var(--space-floor) * 1);
@@ -69,7 +69,7 @@ body {
   color: inherit;
   display: block;
   max-width: 22ch;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
  @media (min-width: 1024px) {
@@ -111,7 +111,7 @@ body {
 }
 
 .subheading, .heading, .description {
-  margin-bottom: 0.25em;
+  margin-bottom: 0.1em;
 }
 
 .frame {
@@ -129,6 +129,7 @@ body {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  z-index: 1;
 }
 
 .frame::before, .framedBackground::before {
@@ -154,7 +155,7 @@ body {
 /* BUTTON */
 /* ------ */
 .buttons {
-  margin-top: var(--space2);
+  margin-top: var(--space3);
   display: flex;
   align-items: center;
 }
@@ -170,88 +171,45 @@ body {
   opacity: 0.5;
 }
 
-.uniqueButton {
-  position: relative;
-  font-size: 14px;
+.filledButton, .outlinedButton, .textButton {
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.2em 2.5em;
-  text-decoration: none;
-  color: rgba(var(--color-button-secondary));
-}
-
-.uniqueButton .buttonLabel {
-  position: relative;
-  display: block;
-  transition: color var(--timing-short) ease-in;
-}
-
-.uniqueButton .background {
-  color: rgba(var(--color-button));
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.uniqueButton .background svg {
-  width: 100%;
-  height: 100%;
-}
-
-.uniqueButton .background svg path {
-  transition: fill var(--timing-short) ease-in, color var(--timing-short) ease-in;
-}
-
-.uniqueButton:hover {
-  color: rgba(var(--color-button));
-}
-
-.uniqueButton:hover .background {
-  color: rgba(var(--color-button-secondary));
-}
-
-.filledButton, .outlinedButton, .textButton {
-  display: inline-block;
-  cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   transition: 
     color var(--timing-short) ease, 
     background-color var(--timing-short) ease, 
-    transform var(--timing-short) ease,
     box-shadow var(--timing-short) ease,
     border var(--timing-short) ease;
 }
 
+a.filledButton, a.outlinedButton, a.textButton {
+  text-decoration: none;
+}
+
 .filledButton, .outlinedButton {
-  padding: 0.8em 2em;
-  border: 1px solid rgba(var(--color-button));
-  border-radius: 999px;
-  box-shadow: 0px 5px 5px 0px rgba(var(--color-button), 0.25);
+  padding: 0.7em 1.4em;
+  min-height: 30px;
+  min-width: 120px;
+  border-radius: 10px;
+  border: 1px solid var(--color-button);
+  max-width: 400px;
 }
 
 .filledButton, .outlinedButton:hover {
   color: rgba(var(--color-button-secondary));
-  background-color: rgba(var(--color-button));
+  background-color: var(--color-button);
 }
 
 .outlinedButton, .filledButton:hover {
   background-color: transparent;
-  color: rgba(var(--color-button));
-}
-
-.outlinedButton:hover, .filledButton:hover {
-  box-shadow: 0px 5px 15px 1px rgba(var(--color-button), 0.25);
-  transform: translateY(-5px);
+  color: var(--color-button);
 }
 
 .textButton {
   display: inline-block;
   color: rgba(var(--color-font), 1);
-  font-size: 14px;
   margin-top: 0.8em;
   margin-bottom: 0.8em;
   background-color: transparent;
@@ -423,39 +381,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-}
-
-#NavigationBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: rgba(var(--color-background));
-  opacity: 0;
-}
-
-#NavigationBackground > .background {
-  width: 100%;
-  height: calc(100% - 20px);
   background-color: rgba(var(--color-background));
-  transition: background-color var(--timing-long) ease-in;
-}
-
-.activeMenu #NavigationBackground {
-  color: rgba(var(--color-foreground));
-}
-
-.activeMenu #NavigationBackground > .background {
-  background-color: rgba(var(--color-foreground));
-}
-
-#NavigationBackground > svg {
-  margin-top: -1px;
-  width: 100%;
-  height: 10px;
-  display: block;
-  transition: color var(--timing-long) ease-in;
 }
 
 #NavigationContent {
@@ -463,17 +389,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px var(--space-gutter) 25px;
+  padding: 5px var(--space-gutter);
   max-width: var(--page-width);
   margin: 0 auto;
 }
 
-#NavigationContent .links {
+#NavigationContent .links-left,
+#NavigationContent .links-right {
+  flex: 1 0 auto;
   display: flex;
+  gap: var(--space2);
 }
 
-#NavigationContent .links a:not(:last-child) {
-  margin-right: var(--space1);
+#NavigationContent .links-right {
+  justify-content: flex-end;
 }
 
 #NavigationContent .textButton {
@@ -482,34 +411,18 @@ body {
   padding: 0.2em 0;
 }
 
-#Navigation.animateMe #NavigationBackground {
-  opacity: 1;
-  transition: opacity var(--timing-short) ease-in;
-}
-
-#Navigation.animateMe #Logo {
-  flex: 0 0 60px;
-}
-
 #Logo {
-  flex: 0 0 90px;
-  color: var(--color-darkgreen);
+  flex: 0 0 65px;
+  color: var(--color-purple);
   height: auto;
   display: block;
   transition: flex var(--timing-short) ease-in;
 }
 
 #Logo svg {
-  fill: rgba(var(--color-darkgreen));
+  fill: currentColor;
   width: 100%;
   height: auto;
-}
-
-/* ----- */
-/* ABOUT */
-/* ----- */
-.aboutSection svg {
-  fill: rgba(var(--color-darkgreen));
 }
 
 /* -------- */
@@ -704,8 +617,10 @@ body {
   position: relative;
   overflow: hidden;
   min-height: unset;
-  background-color: rgba(var(--color-darkgreen));
+  background-color: var(--color-grey);
   color: rgba(var(--color-background));
+  overflow: hidden;
+  padding-top: 0px;
 }
 
 #Footer .tinyHeading {
@@ -724,9 +639,22 @@ body {
   align-items: center;
 }
 
+.footerPen {
+  background-color: var(--color-grey);
+  flex: 1 1 100%;
+  width: 100%;
+  margin-left: calc((var(--space-gutter) + 15px) * -1);
+}
+
+.footerPen svg {
+  width: 100%;
+  max-width: calc(var(--page-width) - (var(--space-gutter) * 2));
+}
+
 @media (max-width: 1023px) {
   #Footer .singleBlock {
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   #Footer .singleBlock > * {
@@ -760,11 +688,11 @@ body {
 }
 
 .indexIntroSection .uniqueButton .background {
-  color: rgba(var(--color-darkgreen));
+  color: var(--color-purple);
 }
 
 .indexIntroSection .uniqueButton:hover {
-  color: rgba(var(--color-darkgreen));
+  color: var(--color-purple);
 }
 
 .indexIntroSection .uniqueButton:hover .background {
@@ -805,6 +733,11 @@ body {
 /* --------- */
 /* CASE GRID */
 /* --------- */
+.casesSection {
+  background-color: var(--color-grey);
+  color: rgba(var(--color-background));
+}
+
 .casesSection .singleBlock > .heading {
   margin-bottom: var(--space-gutter);
 }
@@ -823,7 +756,6 @@ body {
   overflow: hidden;
   transition: transform var(--timing-short) ease-in;
   cursor: pointer;
-  box-shadow: var(--box-shadow);
 }
 
 .gridItem:hover {
@@ -914,24 +846,24 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-color: rgba(181, 159, 204, 0.5);
+  background-color: var(--color-purple-bg);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   opacity: 0;
   z-index: 100;
-  padding: var(--space-gutter);
+  padding: 0 var(--space-gutter);
 }
 
-.contactModal .contactLinks .textButton {
+.contactModal .textButton {
   color: inherit;
-  font-size: 1.2rem;
+  font-size: 2rem;
   margin: 0;
 }
 
 @media (min-width: 1024px) {
-  .contactModal .contactLinks .textButton {
-    font-size: 2rem;
+  .contactModal .textButton {
+    font-size: 3rem;
   }
 }
 
@@ -939,18 +871,23 @@ body {
   color: inherit;
 }
 
-.contactLinks {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+.contactModal .tinyHeading {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 2px;
 }
 
 .contactModalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 720px;
   background-color: rgba(var(--color-background));
   transform: translateY(30%);
   opacity: 0;
   padding: var(--space-gutter);
-  border-radius: var(--border-radius);
+  border-radius: 10px 10px 0 0;
 }
 
 .activeContactModal .contactModal, .activeContactModal .contactModalContent {
@@ -963,10 +900,6 @@ body {
   transform: translateY(0%);
 }
 
-.contactLinkGroup:nth-child(odd) {
-  padding-bottom: var(--space3);
-}
-
-.contactLinkGroup:nth-child(even) {
-  padding: var(--space3) 0;
+.margin-top-3 {
+  margin-top: var(--space3);
 }
