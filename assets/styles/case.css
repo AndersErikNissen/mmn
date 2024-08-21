@@ -1,9 +1,5 @@
-#Logo svg {
-  fill: var(--color-logo, inherit);
-}
-
 .hasIntroSection {
-  padding-top: 50vh;
+  padding-top: 100vh;
 }
 
 .caseMeta {
@@ -12,12 +8,18 @@
 }
 
 .introSection {
-  padding: 0;
-  height: 50vh;
+  height: unset;
+  min-height: 600px;
+}
+
+.introCaseWrapper {
+  height: calc(100vh - (var(--space-section) * 2));
+  background-color: var(--color-grey);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--intro-background, transparent);
+border-radius: var(--border-radius);
+width: 100%;
 }
 
 .introSection .caseLogo {

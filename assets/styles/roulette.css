@@ -4,6 +4,7 @@
   position: relative;
   overflow: hidden;
   padding-top: 100%;
+  background-color: rgba(var(--color-background));  
 }
 
 .visualRolette > div {
@@ -25,14 +26,6 @@
 
   .visualRolette + .visualRolette + .visualRolette {
     display: none;
-  }
-}
-
-@media (min-width: 1024px) {
-  .visualRolette {
-    flex: 0 0 50%;
-    width: 50%;
-    padding-top: 50%;
   }
 }
 
