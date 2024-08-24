@@ -16,6 +16,7 @@
 
   --navigation-height: 87px;
   --page-width: 1440px;
+  --half-width: calc(var(--page-width) / 2);
   --space-floor: 10px;
   --space-section: calc(var(--space-floor) * 5);
   --space-block: calc(var(--space-floor) * 1);
@@ -183,8 +184,8 @@ body {
 }
 
 .filledButton, .outlinedButton, .textButton {
+  display: inline-flex;
   cursor: pointer;
-  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
@@ -662,11 +663,33 @@ a.filledButton, a.outlinedButton, a.textButton {
   flex: 1 1 100%;
   width: 100%;
   margin-left: calc((var(--space-gutter) + 15px) * -1);
+  margin-bottom: 80px;
 }
 
 .footerPen svg {
   width: 100%;
-  max-width: calc(var(--page-width) - (var(--space-gutter) * 2));
+  max-width: calc(100% - var(--space-gutter));
+}
+
+@media (min-width: 1440px) {
+  .footerPen svg {
+    width: 100%;
+    max-width: calc(50% + var(--half-width));
+  }
+}
+
+#Footer .evenBlock {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#Footer .evenBlock svg {
+  width: 100%;
+  max-width: 150px;
+}
+
+#Footer .evenBlock .cls-1 {
+  fill: #eee;
 }
 
 @media (max-width: 1023px) {
@@ -783,6 +806,7 @@ a.filledButton, a.outlinedButton, a.textButton {
 .gridItemContent {
   position: relative;
   padding: var(--space3);
+  z-index: 2;
 }
 
 .gridItem .icon {
@@ -920,6 +944,10 @@ a.filledButton, a.outlinedButton, a.textButton {
 
 .margin-top-3 {
   margin-top: var(--space3);
+}
+
+.margin-top-2 {
+  margin-top: var(--space2);
 }
 
 .bg-grey {

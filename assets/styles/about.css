@@ -16,18 +16,6 @@
   margin-top: var(--space3);
 }
 
-.aboutBottomIllustration .cls-1{
-  fill: rgba(var(--color-pink));
-}
-
-.mojnIcon {
-  position: absolute;
-  bottom: 100px;
-  left: -30px;
-  width: 200px;
-  height: auto;
-}
-
 #Navigation {
   position: sticky;
 }
@@ -38,6 +26,10 @@
   left: 0%;
   width: 100%;
   height: 100%;
+}
+
+.note p {
+  font-size: 16px;
 }
 
 .parallaxLayer0 .note:nth-child(1) {
