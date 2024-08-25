@@ -18,8 +18,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-border-radius: var(--border-radius);
-width: 100%;
+  border-radius: var(--border-radius);
+  width: 100%;
 }
 
 .introSection .caseLogo {
@@ -27,7 +27,8 @@ width: 100%;
   height: auto;
 }
 
-.introSection .caseLogo > svg, .introSection .caseLogo > img {
+.introSection .caseLogo > svg,
+.introSection .caseLogo > img {
   width: 100%;
   height: auto;
 }
@@ -69,7 +70,8 @@ width: 100%;
   border-radius: var(--border-radius);
 }
 
-.nextCaseSection .framedBackground img, .nextCaseSection .arrowButton svg {
+.nextCaseSection .framedBackground img,
+.nextCaseSection .arrowButton svg {
   transition: transform var(--timing-long) ease-in;
 }
 
@@ -99,7 +101,7 @@ width: 100%;
 }
 
 .nextCaseSection .arrowButton {
-  font-family: 'Sulphur Point', sans-serif;
+  font-family: "Sulphur Point", sans-serif;
   color: rgba(var(--color-font-secondary));
   font-size: 1.5rem;
   display: flex;
@@ -127,4 +129,68 @@ width: 100%;
   .nextCaseSection .arrowButton svg {
     width: 25px;
   }
+}
+
+.carousel-image:not(:nth-child(1)) {
+  opacity: 0;
+}
+
+.carousel-image:nth-child(2) {
+  animation: carousel-image-2 6s linear infinite;
+}
+
+.carousel-image:nth-child(3) {
+  animation: carousel-image-3 6s linear infinite;
+}
+
+.carousel-image:nth-child(4) {
+  animation: carousel-image-4 6s linear infinite;
+}
+
+.carousel-image:nth-child(5) {
+  animation: carousel-image-5 6s linear infinite;
+}
+
+@keyframes carousel-image-2 {
+  19.99% {
+    opacity: 0;
+  }
+  20%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes carousel-image-3 {
+  39.99% {
+    opacity: 0;
+  }
+  40%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes carousel-image-4 {
+  59.99% {
+    opacity: 0;
+  }
+  60%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes carousel-image-5 {
+  79.99% {
+    opacity: 0;
+  }
+  80%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.gallery-images::before {
+  padding-top: 170%;
 }
