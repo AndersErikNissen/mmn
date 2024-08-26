@@ -190,7 +190,3 @@
     opacity: 1;
   }
 }
-
-.gallery-images::before {
-  padding-top: 170%;
-}

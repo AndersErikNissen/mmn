@@ -1,7 +1,7 @@
 :root {
   /* Brand colors */
   --color-purple: #9f8ee1;
-  --color-purple-bg: rgba(159,142,225,0.5);
+  --color-purple-bg: rgba(159, 142, 225, 0.5);
   --color-grey: #252525;
 
   --color1: 0, 0, 0;
@@ -45,7 +45,7 @@
 html {
   font-size: 16px;
   color: rgba(var(--color-font), 1);
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 @media screen and (max-width: 1023px) {
@@ -61,11 +61,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-.heading, .tinyHeading, #Menu a {
-  font-family: 'Sulphur Point', sans-serif;
+.heading,
+.tinyHeading,
+#Menu a {
+  font-family: "Sulphur Point", sans-serif;
 }
 
-.heading, .tinyHeading {
+.heading,
+.tinyHeading {
   font-size: 2.5rem;
   color: inherit;
   display: block;
@@ -73,14 +76,17 @@ body {
   line-height: 1.1;
 }
 
-.heading.animateMe > span, .tinyHeading.animateMe > span {
+.heading.animateMe > span,
+.tinyHeading.animateMe > span {
   display: block;
   transform: translateY(0.24em);
   opacity: 0;
 }
 
-.heading.animateMe.animated > span, .tinyHeading.animateMe.animated > span {
-  transition: transform var(--timing-long) ease-in, opacity var(--timing-short) ease-in;
+.heading.animateMe.animated > span,
+.tinyHeading.animateMe.animated > span {
+  transition: transform var(--timing-long) ease-in,
+    opacity var(--timing-short) ease-in;
   transform: translateY(0);
   opacity: 1;
 }
@@ -100,22 +106,25 @@ body {
   margin-top: var(--space-gutter);
 }
 
-.subheading, .heading, .description {
+.subheading,
+.heading,
+.description {
   margin-bottom: 0.2em;
 }
-
 
 @media (min-width: 1024px) {
   .heading {
     font-size: 4rem;
   }
-  
+
   .tinyHeading {
     font-size: 2.5rem;
     margin-bottom: 0.15em;
   }
 
-  .subheading, .heading, .description {
+  .subheading,
+  .heading,
+  .description {
     margin-bottom: 0.1em;
   }
 }
@@ -128,7 +137,9 @@ body {
   border-radius: var(--border-radius);
 }
 
-.framedBackground, .frameOverlay, .linkOverlay {
+.framedBackground,
+.frameOverlay,
+.linkOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -138,13 +149,17 @@ body {
   z-index: 1;
 }
 
-.frame::before, .framedBackground::before {
+.frame::before,
+.framedBackground::before {
   content: "";
   padding-bottom: var(--frame-aspect, 100%);
   display: block;
 }
 
-.frame > img, .section > img, .fullSection > img, .framedBackground > img {
+.frame > img,
+.section > img,
+.fullSection > img,
+.framedBackground > img {
   position: absolute;
   top: 0;
   left: 0;
@@ -183,24 +198,27 @@ body {
   opacity: 0.5;
 }
 
-.filledButton, .outlinedButton, .textButton {
+.filledButton,
+.outlinedButton,
+.textButton {
   display: inline-flex;
   cursor: pointer;
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  transition: 
-    color var(--timing-short) ease, 
-    background-color var(--timing-short) ease, 
-    box-shadow var(--timing-short) ease,
-    border var(--timing-short) ease;
+  transition: color var(--timing-short) ease,
+    background-color var(--timing-short) ease,
+    box-shadow var(--timing-short) ease, border var(--timing-short) ease;
 }
 
-a.filledButton, a.outlinedButton, a.textButton {
+a.filledButton,
+a.outlinedButton,
+a.textButton {
   text-decoration: none;
 }
 
-.filledButton, .outlinedButton {
+.filledButton,
+.outlinedButton {
   padding: 0.7em 1.4em;
   min-height: 30px;
   min-width: 120px;
@@ -209,12 +227,14 @@ a.filledButton, a.outlinedButton, a.textButton {
   max-width: 400px;
 }
 
-.filledButton, .outlinedButton:hover {
+.filledButton,
+.outlinedButton:hover {
   color: rgba(var(--color-button-secondary));
   background-color: var(--color-button);
 }
 
-.outlinedButton, .filledButton:hover {
+.outlinedButton,
+.filledButton:hover {
   background-color: transparent;
   color: var(--color-button);
 }
@@ -242,21 +262,24 @@ a.filledButton, a.outlinedButton, a.textButton {
   height: 1px;
   bottom: 0;
   left: -100%;
-  transition: transform var(--timing-short) ease, opacity var(--timing-short) ease;
+  transition: transform var(--timing-short) ease,
+    opacity var(--timing-short) ease;
 }
 
 .textButton:hover::before {
   transform: translateX(100%);
 }
 
-.textButton:hover::before, .textButton:hover {
+.textButton:hover::before,
+.textButton:hover {
   opacity: 0.5;
 }
 
 /* ------- */
 /* SECTION */
 /* ------- */
-.section, .fullSection > [class*="Block"] {
+.section,
+.fullSection > [class*="Block"] {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -302,16 +325,19 @@ a.filledButton, a.outlinedButton, a.textButton {
   transform: rotate(180deg);
 }
 
-.fullSection > .oddBlock, .fullSection > .evenBlock {
+.fullSection > .oddBlock,
+.fullSection > .evenBlock {
   padding: var(--space-section) var(--space-gutter);
 }
 
-.section > [class*="Block"], .fullSection > [class*="Block"] {
+.section > [class*="Block"],
+.fullSection > [class*="Block"] {
   position: relative;
   flex: 1 0 100%;
 }
 
-.section > .singleBlock, .fullSection > .singleBlock {
+.section > .singleBlock,
+.fullSection > .singleBlock {
   flex: 1 1 100%;
   width: 100%;
   max-width: calc(var(--page-width) - (var(--space-gutter) * 2));
@@ -329,49 +355,51 @@ a.filledButton, a.outlinedButton, a.textButton {
 
 @media screen and (max-width: 1023px) {
   .section > .oddBlock {
-    margin-bottom: var(--space-gutter)
+    margin-bottom: var(--space-gutter);
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .section > .oddBlock, .section > .evenBlock, 
-  .fullSection > .oddBlock > div, .fullSection > .evenBlock > div {
+  .section > .oddBlock,
+  .section > .evenBlock,
+  .fullSection > .oddBlock > div,
+  .fullSection > .evenBlock > div {
     max-width: calc((var(--page-width) / 2) - (var(--space-gutter) * 2));
   }
-  
-  .fullSection > .oddBlock, .fullSection > .evenBlock {
+
+  .fullSection > .oddBlock,
+  .fullSection > .evenBlock {
     flex: 1 1 50%;
     min-height: 100%;
   }
-  
+
   .section > .oddBlock {
     flex: 1 1 calc(50% - var(--space-gutter));
     margin-right: var(--space-gutter);
   }
-  
+
   .section > .evenBlock {
     flex: 1 1 calc(50% - var(--space-gutter));
     margin-left: var(--space-gutter);
   }
-  
+
   .fullSection > .oddBlock {
     padding-right: 0;
   }
-  
+
   .fullSection > .evenBlock {
     padding-left: 0;
   }
 
   .fullSection > .oddBlock > div {
     flex: 0 1 calc(100% - var(--space-gutter));
-    margin-right: var(--space-gutter); 
+    margin-right: var(--space-gutter);
     justify-content: end;
-
   }
 
   .fullSection > .evenBlock > div {
     flex: 0 1 calc(100% - var(--space-gutter));
-    margin-left: var(--space-gutter); 
+    margin-left: var(--space-gutter);
     justify-content: start;
   }
 }
@@ -393,7 +421,8 @@ a.filledButton, a.outlinedButton, a.textButton {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(var(--color-background));
+  background-color: rgba(255, 255, 255, 0.85);
+  overflow: hidden;
 }
 
 #NavigationContent {
@@ -497,7 +526,8 @@ a.filledButton, a.outlinedButton, a.textButton {
   padding: 5px;
 }
 
-.carouselControls .prevSlide, .carouselControls .nextSlide {
+.carouselControls .prevSlide,
+.carouselControls .nextSlide {
   padding: 5px;
   cursor: pointer;
 }
@@ -508,7 +538,8 @@ a.filledButton, a.outlinedButton, a.textButton {
   height: auto;
 }
 
-.carouselControls .prevSlide:active svg, .carouselControls .nextSlide:active svg {
+.carouselControls .prevSlide:active svg,
+.carouselControls .nextSlide:active svg {
   transform: scale(0.9);
 }
 
@@ -522,7 +553,7 @@ a.filledButton, a.outlinedButton, a.textButton {
   display: flex;
   justify-content: center;
   align-items: end;
-  
+
   /* transform: translateX(calc(100% * var(--slide-index, 0))); */
 }
 
@@ -530,7 +561,8 @@ a.filledButton, a.outlinedButton, a.textButton {
   color: rgba(var(--color-font-secondary));
   position: relative;
   z-index: 1;
-  padding: var(--space-gutter) calc(var(--space-gutter) + 100px) var(--space-gutter) var(--space-gutter);
+  padding: var(--space-gutter) calc(var(--space-gutter) + 100px)
+    var(--space-gutter) var(--space-gutter);
   width: 100%;
   max-width: var(--page-width);
 }
@@ -604,7 +636,8 @@ a.filledButton, a.outlinedButton, a.textButton {
   transform: translateY(100%);
 }
 
-.menuButtonFirstStage, .menuButtonSecondStage {
+.menuButtonFirstStage,
+.menuButtonSecondStage {
   display: block;
   text-align: center;
 }
@@ -618,7 +651,8 @@ a.filledButton, a.outlinedButton, a.textButton {
 }
 
 @media (min-width: 1024px) {
-  #MenuButton, #Menu {
+  #MenuButton,
+  #Menu {
     display: none;
   }
 }
@@ -704,7 +738,7 @@ a.filledButton, a.outlinedButton, a.textButton {
   }
 
   #Footer .tinyHeading {
-    margin-bottom: var(--space-gutter)
+    margin-bottom: var(--space-gutter);
   }
 }
 
@@ -815,7 +849,7 @@ a.filledButton, a.outlinedButton, a.textButton {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .gridItem:nth-child(1) {
@@ -842,7 +876,6 @@ a.filledButton, a.outlinedButton, a.textButton {
 .gridItem:nth-child(6) {
   grid-area: 5 / 1 / 7 / 6;
 }
-
 
 @media (max-width: 1023px) {
   .casesGrid {
@@ -872,7 +905,7 @@ a.filledButton, a.outlinedButton, a.textButton {
     grid-gap: var(--space3);
     height: 200vh;
   }
-  
+
   .gridItemContent .tinyHeading {
     font-size: 2rem;
   }
@@ -932,10 +965,12 @@ a.filledButton, a.outlinedButton, a.textButton {
   border-radius: 10px 10px 0 0;
 }
 
-.activeContactModal .contactModal, .activeContactModal .contactModalContent {
+.activeContactModal .contactModal,
+.activeContactModal .contactModalContent {
   pointer-events: all;
   opacity: 1;
-  transition: opacity var(--timing-long) ease-in, transform var(--timing-long) ease-in;
+  transition: opacity var(--timing-long) ease-in,
+    transform var(--timing-long) ease-in;
 }
 
 .activeContactModal .contactModalContent {
