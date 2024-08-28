@@ -799,6 +799,10 @@ a.textButton {
     left: var(--space-gutter);
     border-radius: var(--border-radius);
   }
+
+  .introSection .singleBlock {
+    padding: 40px;
+  }
 }
 
 .introSection .heading {
